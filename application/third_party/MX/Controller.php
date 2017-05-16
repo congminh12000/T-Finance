@@ -53,17 +53,35 @@ class MX_Controller {
 
         /* autoload module items */
         $this->load->_autoloader($this->autoload);
-        
+
         //check admin login
-        $this->_checkAdminLogin();
+        $module = $this->uri->segment(1);
+        $controller = $this->uri->segment(2);
+
+        if ($module == 'admin' && $controller != 'login') {
+            $isCheck = $this->_checkAdminLogin();
+
+            if ($isCheck === false) {
+                redirect(base_url('admin/login'));
+            }
+        }
+
+//        $this->session->unset_userdata('userLogin');
     }
 
     public function __get($class) {
         return CI::$APP->$class;
     }
-    
-    protected function _checkAdminLogin(){
-        
+
+    /**
+     * 
+     * @return <boolean>
+     */
+    protected function _checkAdminLogin() {
+        $arrUser = $this->session->userdata('userLogin');
+        $isLogin = (boolean) $arrUser['isLogin'];
+
+        return $isLogin;
     }
 
 }

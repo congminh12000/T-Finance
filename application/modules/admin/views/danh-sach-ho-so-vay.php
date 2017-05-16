@@ -16,6 +16,7 @@
                             <th>Thế chấp</th>
                             <th>Hộ khẩu</th>
                             <th>Thời gian hẹn</th>
+                            <th>Chức năng</th>
                             </thead>
                             <tbody>
                                 <?php foreach ($arrList as $item): ?>
@@ -23,7 +24,12 @@
                                         <td><?php echo $item['step_one_buy']; ?></td>
                                         <td><?php echo $item['step_two_loan'] ?></td>
                                         <td><?php echo $item['step_four_shk_address'] ?></td>
-                                        <td><?php echo $item['step_five_day'] . ' - ' .$item['step_five_time']; ?></td>
+                                        <td><?php echo $item['step_five_day'] . ' - ' . $item['step_five_time']; ?></td>
+                                        <td>
+                                            <a href="javascript:void(0);" class="btn-view-detail" data-json='<?php echo json_encode($item); ?>'>
+                                                <i class="material-icons">local_hospital</i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

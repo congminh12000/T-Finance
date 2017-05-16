@@ -1,5 +1,7 @@
 <?php
-$route = $this->uri->segment(1);
+$module = $this->uri->segment(1);
+$controller = $this->uri->segment(2);
+$arrUser = $this->session->userData('userLogin');
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +25,14 @@ $route = $this->uri->segment(1);
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
         <link href="<?php echo base_url('static/admin/css/demo.css'); ?>" rel="stylesheet" />
+        <link href="<?php echo base_url('static/admin/css/animate.css'); ?>" rel="stylesheet" />
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+        <link href="<?php echo base_url('static/admin/css/sweet-alert-2.min.css'); ?>" rel="stylesheet" />
+        <link href="<?php echo base_url('static/admin/css/my/general.css'); ?>" rel="stylesheet" />
 
         <!--   Core JS Files   -->
         <script src="<?php echo base_url('static/admin/js/jquery-3.1.0.min.js'); ?>" type="text/javascript"></script>
@@ -34,7 +40,7 @@ $route = $this->uri->segment(1);
         <script src="<?php echo base_url('static/admin/js/material.min.js'); ?>" type="text/javascript"></script>
 
         <!--  Charts Plugin -->
-        <script src="<?php echo base_url('static/admin/js/chartist.min.js'); ?>"></script>
+        <script src="<?php // echo base_url('static/admin/js/chartist.min.js');        ?>"></script>
 
         <!--  Notifications Plugin    -->
         <script src="<?php echo base_url('static/admin/js/bootstrap-notify.js'); ?>"></script>
@@ -43,10 +49,35 @@ $route = $this->uri->segment(1);
         <script src="<?php echo base_url('static/admin/js/material-dashboard.js'); ?>"></script>
 
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-        <script src="<?php echo base_url('static/admin/js/demo.js'); ?>"></script>
+        <script src="<?php // echo base_url('static/admin/js/demo.js');        ?>"></script>
+
+        <script src="<?php echo base_url('static/admin/js/sweet-alert-2.min.js'); ?>"></script>
+        <script src="<?php echo base_url('static/admin/js/my/general.js'); ?>"></script>
+
+        <!-- js my -->
+        <?php
+        switch ($controller):
+            case '':    //danh-sach-ho-so-vay
+            case 'index':
+                ?>
+                <script src="<?php echo base_url('static/admin/js/my/danh-sach-ho-so-vay.js'); ?>" type="text/javascript"></script>
+                <?php
+                break;
+        endswitch;
+        ?>
+
+        <script type="text/javascript">
+            var baseUrl = '<?php echo base_url('admin'); ?>';
+        </script>
     </head>
 
     <body>
+
+        <div id="loading-mask" style="left: -2px; top: 0px; width: 100%; height: 100%; display: none;">
+            <p id="loading_mask_loader" class="loader">
+                <img alt="Loading..." src="<?php echo base_url('static/admin/img/loading.gif'); ?>">
+                <br>Vui lòng chờ...</p>
+        </div>
 
         <div class="wrapper">
 
@@ -85,6 +116,10 @@ $route = $this->uri->segment(1);
                                         <i class="material-icons">person</i>
                                         <p class="hidden-lg hidden-md">Profile</p>
                                     </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="javascript:void(0);">Chào <span style="color: green;"><?php echo ucfirst($arrUser['username']); ?> !</span></a></li>
+                                        <li><a id="btn-logout-admin" href="javascript:void(0);">Đăng xuất</a></li>
+                                    </ul>
                                 </li>
                             </ul>
 

@@ -7,6 +7,12 @@ class Login extends MX_Controller {
 
     public function __construct() {
         parent::__construct();
+
+        $isCheck = $this->_checkAdminLogin();
+
+        if ($isCheck) {
+            redirect(base_url('admin'));
+        }
     }
 
     public function index() {
@@ -70,7 +76,7 @@ class Login extends MX_Controller {
         ];
 
         $this->session->set_userdata($arrSession);
-        
+
         $arrResp = [
             'isError' => false,
             'message' => 'Thành công !',
@@ -78,7 +84,7 @@ class Login extends MX_Controller {
                 'homeUrl' => base_url('admin')
             ]
         ];
-        
+
         echo json_encode($arrResp);
         return true;
     }
