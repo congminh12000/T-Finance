@@ -53,10 +53,17 @@ class MX_Controller {
 
         /* autoload module items */
         $this->load->_autoloader($this->autoload);
+        
+        //check admin login
+        $this->_checkAdminLogin();
     }
 
     public function __get($class) {
         return CI::$APP->$class;
+    }
+    
+    protected function _checkAdminLogin(){
+        
     }
 
 }

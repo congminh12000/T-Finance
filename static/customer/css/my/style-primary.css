@@ -1,0 +1,451 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+/*Index*/
+.navbar-default {
+    background-color: #6d0100;
+    padding-bottom: 5px;
+    box-shadow: 0px 6px 28px #343434;
+    border-bottom: none;
+}
+.navbar-nav > li {
+    padding-right: 45px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.navbar-default .navbar-nav > li > a:link, .navbar-default .navbar-nav > li > a:visited {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: #ffc450;
+}
+.navbar-default .navbar-nav > .active > a {
+    background-color: #ffc450;
+    border-radius: 15px;
+    color: #333 !important;
+}
+.btn-intro {
+    background-color: #630403;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    padding: 4px 20px 4px 20px;
+}
+.btn-main {
+    background-color: #630403;
+    color: #ffffff;
+    padding: 8px 20px 8px 20px;
+    border-radius: 8px;
+}
+.btn:hover {
+    background-color: #ffc450;
+}
+.slideshow {
+    border-bottom: none;
+}
+.slideshow .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.line {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 38px;
+    border-top: 1px solid #6f0100;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.body1 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.body1 h2 {
+    font-size: 26px;
+    line-height: 36px;
+}
+.body1 p {
+    line-height: 26px;
+}
+.body2 a.box-time {
+    color: #6f0100;
+    border: 1px solid #6f0100;
+    border-radius: 6px;
+    padding: 0px 10px 0px 10px;
+    margin-top:  15px;
+    margin-bottom: 15px;
+}
+.body2 a.box-time:hover {
+    text-decoration: none;
+    background-color: #6f0100;
+    color: #ffffff;
+}
+.footer1 {
+    background-color: #ffc450;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+.footer1 h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #6f0100;
+}
+.footer1 p {
+    font-size: 13px;
+    color: #6f0100;
+}
+.footer1 a:link, .footer1 a:visited {
+    color: #6f0100;
+}
+.footer1 a:hover {
+    color: #292929;
+} 
+.footer2 {
+    background-color: #6f0100;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 12px;
+}
+.footer2 a:link, .footer2 a:visited {
+    color: #ffc450;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.footer2 a:hover {
+    color: #333;
+    text-decoration: none;
+}
+/*Form Step 1-8*/
+.box-notes {
+    height:  40px;
+    margin-bottom:  20px;
+}
+.box-notes .notes {
+    color: #686868;
+} 
+.body2 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.button100 {
+    width: 100%;
+}
+.box_step1 {
+    width: 20%;
+    padding-bottom: 10px;
+    float: left;
+}
+.box_step1 h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #6f0100;
+}
+.btn-step {
+    border: 2px solid #6f0100;
+    border-radius: 8px;
+    padding: 20px 45px 20px 45px;
+    color: #6f0100;
+    background: #fff;
+    margin-top: 30px;
+}
+.btn-step:hover {
+    background-color: #6f0100;
+    color: #ffffff;
+}
+.btn-step a:link, .boxstep1 a:visited {
+    color: #6f0100;
+    text-decoration: none;
+}
+.btn-step a:hover {
+    color: #ffffff;
+}
+.khung-boder{
+    width: 100%;
+    min-height: 205px;
+    border-radius: 18px;
+    border: 2px solid;
+    border-color: #6f0100;
+    padding: 8px;
+}
+.title-khung{
+    border: 2px solid;
+    border-radius: 8px;
+    background:#6d0100;
+    width:20%;
+    color:#fff;
+    padding:5px 0px;
+    position: absolute;
+    left: 39%;
+    top: -10%;
+}
+.tuy-than-title{
+    width:27%;  
+}
+.tuy-than-form{
+    line-height: 40px;
+    text-align: left;
+    padding: 5px 20px;  
+}
+.tuy-than-form input{
+    margin-right:15px;
+}
+.font-tuy-than{
+    color:#6d0100;
+    font-style:italic;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus,.nav-tabs > li > a:hover {
+    color: #6d0100;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #6d0100;
+    border-radius: 8px;
+}
+.form-mong-muon{border-bottom:none;}
+.form-mong-muon li{
+    width: 50%;
+}
+.form-mong-muon li a{color:#6d0100;padding:10px 20px 20px;}
+.form-mong-muon .title-form{
+    width: 25%;
+    position: absolute;
+    left: 36%;
+    top: -20%;
+    background: #6d0100;
+    border: 1px solid;
+    color: #fff;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.form-lao-dong input{
+    width: 80%;
+    border: 2px solid #6d0100;
+    border-radius: 8px;
+    padding: 3px 10px;
+    color: #6d0100;
+    margin-bottom: 13px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.form-button-2{
+    background: white;
+    border: 2px solid #6d0100;
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: 40%;
+    color: #6d0100;
+    margin-bottom:13px;
+}
+button.form-button-2:hover {
+    background: #6d0100;
+    color: #fff;
+}
+.form-button-3 {
+    background: white;
+    border: 2px solid #6d0100;
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: 26%;
+    color: #6d0100;
+    margin-bottom:13px;
+}
+button.form-button-3:hover {
+    background: #6d0100;
+    color: #fff;
+}
+.form-button-4{
+    background: white;
+    border: 2px solid #6d0100;
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: 40%;
+    color: #6d0100;
+    margin-bottom:13px;
+}
+button.form-button-4:hover {
+    background: #6d0100;
+    color: #fff;
+}
+.button-lao-dong-left { width: 33%;border-top: 2px solid #ffffff;border-bottom: 2px solid #ffffff;border-right: none;border-left: 2px solid #ffffff; border-radius: 8px 0 0 8px;}
+.button-lao-dong-mid { width:34%; border:2px solid #fff; border-left:none; border-right:none;}
+.button-lao-dong-right {width: 31%;border-top:2px solid #ffffff;border-bottom:2px solid #ffffff;border-left: none;border-right:2px solid #ffffff; border-radius: 0px 8px 8px 0px;}
+.button-lao-dong-left, .button-lao-dong-mid, .button-lao-dong-right {background:#fff; color:#6d0100; }
+.button-lao-dong-left:hover, .button-lao-dong-mid:hover, .button-lao-dong-right:hover {background:#6d0100; color:#fff; }
+.button-comfirm{background:#6d0100; color:#fff; border:2px solid #6d0100; border-radius: 8px; padding: 8px 20px 8px 20px;}
+
+/*csss zoi sửa 4-5 */
+.title-bao-hiem { font-size: 30px; font-weight: 600; color: #6f0100; font-size: 30px; font-weight: 600; color: #6f0100;}
+.list-bao-hiem { width: 80%;border: 2px solid #6d0100; border-radius: 8px; color: #6d0100;  padding: 6px 6px; margin-bottom: 20px;}
+
+
+/*csss zoi sửa 4-5 */
+
+/* PCM custome freestyle css :) */
+.margin-top-negative-30{
+    margin-top: -30px !important;
+}
+
+.color-red{
+    color: #6d0100 !important;
+}
+
+#loading-mask {
+    color: #D85909;
+    font-size: 1.1em;
+    font-weight: bold;
+    opacity: 0.8;
+    position: absolute;
+    text-align: center;
+    z-index: 500;
+}
+
+#loading-mask .loader {
+    background: none repeat scroll 0 0 #FFF4E9;
+    border: 2px solid #F1AF73;
+    color: #D85909;
+    font-weight: bold;
+    left: 50%;
+    margin-left: -105px;
+    padding: 15px 30px;
+    position: fixed;
+    text-align: center;
+    top: 45%;
+    width: 200px;
+    z-index: 1000;
+}
+
+.img-border { 
+    border: 5px solid;
+    border-radius: 80px;
+    color: #F1AF73;
+}
+.box_step2_tstc {
+    padding-bottom: 30px;
+}
+.box_step2_tstc h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #6f0100;
+}
+
+button.form-button-ngay {
+    background: white;
+    border: 2px solid #6d0100;
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: 10%;
+    color: #6d0100;
+    margin-bottom:13px;
+    margin-right: 5px;
+}
+
+button.form-button-ngay-disabled{
+    opacity: 0.3;
+}
+
+button.form-button-ngay:hover:enabled {
+    background: #6d0100;
+    color: #fff;
+}
+
+.ngay{
+    font-size: 25px;
+}
+
+.form-button-stc{
+    background: white;
+    border: 2px solid #6d0100;
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: 30%;
+    color: #6d0100;
+    margin-bottom:13px;
+    margin-right: 5px;
+}
+
+.time-hover{
+    color: #6d0100;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #6d0100;
+    border-radius: 20px;
+}
+@media only screen and (max-width: 1366px) {
+}
+@media only screen and (max-width: 992px) {
+}
+@media only screen and (max-width: 768px) {
+.slideshow {
+    padding-top: 53px;
+}
+.banmuonvay h3 {
+    font-size: 18px;
+}
+.btn-step {
+    padding: 10px 15px 10px 15px;
+    font-size: 18px;
+    white-space: normal;
+}
+.khung-boder {
+    margin-bottom: 30px;
+}
+.title-khung{
+    left: 22%;
+    top: -7%;
+    width: 200px;
+}
+.tuy-than-form {
+    padding-top: 16px;
+}
+.form-mong-muon .title-form {
+    width: 100px;
+    left: 22%;
+    top: -12%;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus,.nav-tabs > li > a:hover {
+    padding-top: 15px;
+    height: 220px;
+}
+.box_step1 {
+    width: 99%;
+}
+.button-lao-dong-left { 
+    width: 99%;
+}
+.button-lao-dong-mid { 
+    width: 99%;
+}
+.button-lao-dong-right {
+    width: 99%;
+}
+.form-button-3 {
+    width: 81%;
+}
+button.form-button-ngay {
+     width: 31%;
+}
+.form-button-4 {
+    width: 86%;
+    padding: 4px 6px;
+}
+.footer1 img {
+    width: 68%;
+}
+.nopaddingleft {
+    padding-left: 0px;
+}
+.navbar-nav > li {
+    font-size: 12px;
+	font-weight: normal;
+	padding-right: 0px;
+}
+@media only screen and (max-width: 576px) {
+.box_step1 {
+    width: 99%;
+    float: left;
+}
+}
