@@ -58,7 +58,7 @@ switch($_SERVER['HTTP_HOST']){
         
         define('ENVIRONMENT', 'production');
         break;
-    case 'http://onstar.space/':
+    case 'onstar.space':
         
         define('ENVIRONMENT', 'staging');
         break;
