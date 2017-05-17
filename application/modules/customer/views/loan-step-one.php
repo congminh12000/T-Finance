@@ -12,23 +12,23 @@ $baseUrl = $this->config->base_url();
 
                 <div class="row">
                     <div class="box_step1 text-center">
-                        <img class="img-loan" data-value="nha" src="<?php echo $baseUrl . 'static/customer/img/step1-vaymuanha.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                        <img class="img-loan" data-value="vay-mua-nha" src="<?php echo $baseUrl . 'static/customer/img/step1-vaymuanha.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                         <h4>VAY MUA NHÀ</h4>
                     </div>
                     <div class="box_step1 text-center">
-                        <img class="img-loan" data-value="oto" src="<?php echo $baseUrl . 'static/customer/img/step1-vaymuaoto.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                        <img class="img-loan" data-value="vay-mua-oto" src="<?php echo $baseUrl . 'static/customer/img/step1-vaymuaoto.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                         <h4>VAY MUA Ô TÔ</h4>
                     </div>
                     <div class="box_step1 text-center">
-                        <img class="img-loan" data-value="xe-may" src="<?php echo $baseUrl . 'static/customer/img/step1-vaymuaxemay.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                        <img class="img-loan" data-value="vay-mua-xe-may" src="<?php echo $baseUrl . 'static/customer/img/step1-vaymuaxemay.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                         <h4>VAY MUA XE MÁY</h4>
                     </div>
                     <div class="box_step1 text-center">
-                        <img class="img-loan" data-value="tieu-dung" src="<?php echo $baseUrl . 'static/customer/img/step1-vaytieudung.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                        <img class="img-loan" data-value="vay-tieu-dung" src="<?php echo $baseUrl . 'static/customer/img/step1-vaytieudung.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                         <h4>VAY TIÊU DÙNG</h4>
                     </div>
                     <div class="box_step1 text-center">
-                        <img class="img-loan" data-value="khac" src="<?php echo $baseUrl . 'static/customer/img/step1-mucdichkhac.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                        <img class="img-loan" data-value="muc-dich-khac" src="<?php echo $baseUrl . 'static/customer/img/step1-mucdichkhac.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                         <h4>MỤC ĐÍCH KHÁC</h4>
                     </div>
                 </div> <!-- end row block1-->
@@ -62,13 +62,13 @@ $baseUrl = $this->config->base_url();
                                     <input type="checkbox" name="vehicle" class="item-loan" value="cmnd"><i class="fa fa-picture-o" aria-hidden="true"></i> Chứng minh nhân dân
                                 </label><br>
                                 <label class="font-tuy-than">
-                                    <input type="checkbox" name="vehicle" class="item-loan" value="xe"><i class="fa fa-folder-open" aria-hidden="true"></i> Bằng lái xe
+                                    <input type="checkbox" name="vehicle" class="item-loan" value="bang-lai-xe"><i class="fa fa-folder-open" aria-hidden="true"></i> Bằng lái xe
                                 </label><br>
                                 <label class="font-tuy-than">
                                     <input type="checkbox" name="vehicle" class="item-loan" value="ho-chieu"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> Hộ chiếu
                                 </label><br>
                                 <label class="font-tuy-than">
-                                    <input type="checkbox" name="vehicle" class="item-loan" value="khac"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Giấy tờ khác
+                                    <input type="checkbox" name="vehicle" class="item-loan" value="giay-to-khac"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Giấy tờ khác
                                 </label>
                             </form>
                         </div>

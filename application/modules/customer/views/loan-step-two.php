@@ -37,19 +37,19 @@ $baseUrl = $this->config->base_url();
                                 <div class="col-md-6 col-md-push-3">
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                                         <div class="box_step2_tstc text-center">
-                                            <img class="img-loan" data-value="oto" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-6.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                            <img class="img-loan" data-value="tstc-oto" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-6.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                             <h4>Ô TÔ</h4>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                                     <div class="box_step2_tstc text-center">
-                                        <img class="img-loan" data-value="quyen-su-dung-dat" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-1.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                        <img class="img-loan" data-value="tstc-quyen-su-dung-dat" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-1.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                         <h4>QUYỀN SỬ DỤNG ĐẤT</h4>
                                     </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                                     <div class="box_step2_tstc text-center">
-                                        <img class="img-loan" data-value="khac" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-7.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                        <img class="img-loan" data-value="tstc-khac" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-7.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                         <h4>KHÁC</h4>
                                     </div>
                                     </div>
@@ -63,23 +63,23 @@ $baseUrl = $this->config->base_url();
 
                             <div class="row">
                                 <div class="box_step1 text-center">
-                                    <img class="img-loan" data-value="hop-dong-lao-dong" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-1.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                    <img class="img-loan" data-value="cmtn-hop-dong-lao-dong" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-1.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                     <h4>HỢP ĐỒNG LAO ĐỘNG</h4>
                                 </div>
                                 <div class="box_step1 text-center">
-                                    <img class="img-loan" data-value="the-tin-dung" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-2.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                    <img class="img-loan" data-value="cmtn-the-tin-dung" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-2.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                     <h4>THẺ TÍN DỤNG</h4>
                                 </div>
                                 <div class="box_step1 text-center">
-                                    <img class="img-loan" data-value="bao-hiem-nhan-tho" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-3.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                    <img class="img-loan" data-value="cmtn-bao-hiem-nhan-tho" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-3.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                     <h4>BẢO HIỂM NHÂN THỌ</h4>
                                 </div>
                                 <div class="box_step1 text-center">
-                                    <img class="img-loan" data-value="lam-viec-tu-do" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-4.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                    <img class="img-loan" data-value="cmtn-lam-viec-tu-do" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-4.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                     <h4>LÀM VIỆC TỰ DO</h4>
                                 </div>
                                 <div class="box_step1 text-center">
-                                    <img class="img-loan" data-value="giay-phep-kinh-doanh" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-5.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
+                                    <img class="img-loan" data-value="cmtn-giay-phep-kinh-doanh" src="<?php echo $baseUrl . 'static/customer/img/step-2-tstc-5.png'; ?>" alt="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
                                     <h4>GIẤY PHÉP KINH DOANH</h4>
                                 </div>
                             </div> <!-- end row block1-->

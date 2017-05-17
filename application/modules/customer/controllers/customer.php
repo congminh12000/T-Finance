@@ -131,7 +131,6 @@ class Customer extends MX_Controller {
         if (!$stepOneComplete || !$stepTwoComplete || !$stepFourComplete || !$stepFiveComplete) {
             redirect(base_url());
         }
-        
 
         //save session in db
         $arrDataInsert = [

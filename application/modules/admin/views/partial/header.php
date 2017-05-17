@@ -113,11 +113,11 @@ $arrUser = $this->session->userData('userLogin');
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                        Chào <span style="color: green;"><?php echo ucfirst($arrUser['username']); ?></span>
                                         <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="javascript:void(0);">Chào <span style="color: green;"><?php echo ucfirst($arrUser['username']); ?> !</span></a></li>
+                                        <!--<li><a href="javascript:void(0);"></span></a></li>-->
                                         <li><a id="btn-logout-admin" href="javascript:void(0);">Đăng xuất</a></li>
                                     </ul>
                                 </li>

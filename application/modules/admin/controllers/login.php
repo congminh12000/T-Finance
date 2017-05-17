@@ -55,7 +55,7 @@ class Login extends MX_Controller {
             'status' => 1,
             'deleted' => 0,
             'username' => $username,
-            'password' => $password
+            'password' => md5($password)
         ];
 
         $user = $userModel->getDetail($arrConditions);

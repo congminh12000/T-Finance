@@ -113,6 +113,7 @@ $(document).ready(function () {
     function myGetDate() {
         var xHtml = '';
         var arrDay = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+        var _arrDay = ['chu-nhat', 'thu-hai', 'thu-ba', 'thu-tu', 'thu-nam', 'thu-sau', 'thu-bay'];
 
         var toDate = new Date();
         var day = toDate.getDay();
@@ -120,6 +121,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < 7; i++) {
             var strDay = arrDay[day];
+            var _strDay = _arrDay[day];
             var html = '';
             var classDisabled = '';
             var disabled = '';
@@ -136,7 +138,7 @@ $(document).ready(function () {
                 strDate = tomorrow.getDate();
             }
 
-            html += '<button class="form-button-ngay day-and-date ' + classDisabled + '" data-day="' + strDay + '" data-date="' + strDate + '" ' + disabled + '>';
+            html += '<button class="form-button-ngay day-and-date ' + classDisabled + '" data-day="' + _strDay + '" data-date="' + strDate + '" ' + disabled + '>';
             html += '<p>' + strDay + '</p>';
             html += '<p class="ngay">' + strDate + '</p>';
             html += '</button>';
