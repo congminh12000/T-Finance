@@ -8,6 +8,7 @@ class Customer extends MX_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
+
     }
 
     public function index() {
@@ -573,7 +574,7 @@ class Customer extends MX_Controller {
     }
 
     public function completeGioiThieuKhachHang() {
-        //$this->load->helper(array('url', 'form'));
+        $this->load->helper('url');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         $this->form_validation->set_rules('lien-he-ho-va-ten', 'Họ và tên', 'required');
@@ -582,10 +583,13 @@ class Customer extends MX_Controller {
         $this->form_validation->set_rules('gioi-thieu-ho-va-ten', 'Họ và tên', 'required');
         $this->form_validation->set_rules('gioi-thieu-dia-chi', 'Địa chỉ', 'required');
         $this->form_validation->set_rules('gioi-thieu-so-dien-thoai', 'Số điện thoại', 'required');
-        if($this->form_validation->run() == FALSE){
-            $this->load->view('gioi-thieu-khach-hang');
-           
-        }  else {
+        
+        /*$arrView = [
+            'Success' => '',
+            'Error' => ''
+        ];*/
+        
+        if($this->form_validation->run()){
             $lhhoten = $this->input->post('lien-he-ho-va-ten');
             $lhdiachi = $this->input->post('lien-he-dia-chi');
             $lhsdt = $this->input->post('lien-he-so-dien-thoai');
@@ -595,8 +599,8 @@ class Customer extends MX_Controller {
             $gtdiachi = $this->input->post('gioi-thieu-dia-chi');
             $gtsdt = $this->input->post('gioi-thieu-so-dien-thoai');
             $gtcmnd = $this->input->post('gioi-thieu-cmnd');
-
-                $data = array(
+            
+            $data = array(
                     'customer_one_name' => $lhhoten,
                     'customer_one_address' => $lhdiachi,
                     'customer_one_phone' => $lhsdt,
@@ -607,59 +611,23 @@ class Customer extends MX_Controller {
                     'customer_two_phone' => $gtsdt,
                     'customer_two_cmnd' => $gtcmnd
                 );  
-                $this->load->model('customer_introduced');
-                $this->customer_introduced->form_insert($data);
-                $this->load->view('welcome');
-            }
-        /*if ($lhhoten == "" || $lhdiachi == "" || $lhsdt == "" || $gthoten == "" || gtdiachi == "" || $gtsdt == "") {
-            //ai cho mày alert trong nay thang cho'
-            //echo '<div class="alert alert-danger" role="alert" align="center">Họ tên, địa chỉ và số điện thoại không được để trống</div>';
-            //redirect(base_url('gioi-thieu-khach-hang'));
-            // em im dùmc dihua 18 dit me coim ko
-            $arrResp = [
-                'isError' => true,
-                'message' => 'Dữ liệu ko hợp lệ !'
-            ];
             
-            echo json_encode($arrResp);
-            return true;
-        }  else {
-                $data = array(
-                'customer_one_name' => $lhhoten,
-                'customer_one_address' => $lhdiachi,
-                'customer_one_phone' => $lhsdt,
-                'customer_one_cmnd' => $this->input->post('lien-he-cmnd'),
-                'customer_one_promotion_code' => $this->input->post('lien-he-ma-khuyen-mai-ca-nhan'),
-                'customer_two_name' => $gthoten,
-                'customer_two_address' => $gtdiÏachi,
-                'customer_two_phone' => $gtsdt,
-                'customer_two_cmnd' => $this->input->post('gioi-thieu-cmnd')
-            );
-            $test = $this->load->model('customer_introduced');
-            
-            //insert thành công thì nó trả về 1 , còn đéo đc thì 0
-            $isInsert = $test->form_insert($data);
-            //$this->load->view('welcome');
-            if($isInsert == 1){
-                 $arrResp = [
-                    'isError' => false,
-                    'message' => 'Thêm thành công'
-                ];
-                 
-            }else{
-                $arrResp = [
-                    'isError' => true,
-                    'message' => 'Thêm thất bại !'
-                ];
+            $this->load->model('customer_introduced');
+            $result=$this->customer_introduced->form_insert($data);
+            //p($result);die;
+            if($result==1){
+                redirect('welcome');
+            }  else {
+                $this->session->set_flashdata('notice','Vui lòng điền đầy đủ thông tin!');
             }
             
-            echo json_encode($arrResp);
-            return true;*/
-        }
-
-
-
+        }else{
+            $this->load->view('gioi-thieu-khach-hang');
+            //$arrView['Error'] = 'Lỗi !';
+            redirect('gioi-thieu-khach-hang');
+        }  
     }
+}
  
 
 ?>
