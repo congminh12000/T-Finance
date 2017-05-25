@@ -8,7 +8,6 @@ class Customer extends MX_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
-
     }
 
     public function index() {
@@ -175,6 +174,100 @@ class Customer extends MX_Controller {
     }
 
     public function gioiThieuKhachHang() {
+
+        if ($this->input->post()) {
+            $arrData = [];
+
+            $lhhoten = trim($this->input->post('lien-he-ho-va-ten'));
+            $lhdiachi = trim($this->input->post('lien-he-dia-chi'));
+            $lhsdt = trim($this->input->post('lien-he-so-dien-thoai'));
+            $lhcmnd = trim($this->input->post('lien-he-cmnd'));
+            $lhkmcn = trim($this->input->post('lien-he-ma-khuyen-mai-ca-nhan'));
+            $gthoten = trim($this->input->post('gioi-thieu-ho-va-ten'));
+            $gtdiachi = trim($this->input->post('gioi-thieu-dia-chi'));
+            $gtsdt = trim($this->input->post('gioi-thieu-so-dien-thoai'));
+            $gtcmnd = trim($this->input->post('gioi-thieu-cmnd'));
+
+            //truyen tham so input khi vua nhap
+            $arrData['arrData'] = [
+                'lhhoten' => $lhhoten,
+                'lhdiachi' => $lhdiachi,
+                'lhsdt' => $lhsdt,
+                'lhcmnd' => $lhcmnd,
+                'lhkmcn' => $lhkmcn,
+                'gthoten' => $gthoten,
+                'gtdiachi' => $gtdiachi,
+                'gtsdt'=> $gtsdt,
+                'gtcmnd' => $gtcmnd
+            ];
+            
+            //valid
+            if ($lhhoten == "") {
+                $arrData['error'] = 'Bạn chưa nhập họ tên';
+                $this->load->view('gioi-thieu-khach-hang', $arrData);
+                return true;
+//                redirect('gioi-thieu-khach-hang');
+            }
+            
+            if ($lhdiachi == "") {
+                $arrData['error'] = 'Bạn chưa nhập địa chỉ';
+                $this->load->view('gioi-thieu-khach-hang', $arrData);
+                return true;
+//                redirect('gioi-thieu-khach-hang');
+            }
+            
+            if ($lhsdt == "") {
+                $arrData['error'] = 'Bạn chưa nhập số điện thoại';
+                $this->load->view('gioi-thieu-khach-hang', $arrData);
+                return true;
+            }
+            
+            if ($gthoten == "") {
+                $arrData['error'] = 'Bạn chưa nhập họ tên';
+                $this->load->view('gioi-thieu-khach-hang', $arrData);
+                return true;
+            }
+            
+            if ($gtdiachi == "") {
+                $arrData['error'] = 'Bạn chưa nhập địa chỉ';
+                $this->load->view('gioi-thieu-khach-hang', $arrData);
+                return true;
+            }
+            
+            if ($gtsdt == "") {
+                $arrData['error'] = 'Bạn chưa nhập số điện thoại';
+                $this->load->view('gioi-thieu-khach-hang', $arrData);
+                return true;
+            }
+            $data = array(
+                'customer_one_name' => $lhhoten,
+                'customer_one_address' => $lhdiachi,
+                'customer_one_phone' => $lhsdt,
+                'customer_one_cmnd' => $lhcmnd,
+                'customer_one_promotion_code' => $lhkmcn,
+                'customer_two_name' => $gthoten,
+                'customer_two_address' => $gtdiachi,
+                'customer_two_phone' => $gtsdt,
+                'customer_two_cmnd' => $gtcmnd
+            );
+            $this->load->model('customer_introduced');
+            $result = $this->customer_introduced->form_insert($data);
+            redirect(base_url());
+            //$this->load->view('welcome');
+            //if ($result) {
+                //redirect('welcome');
+                //$this->load->view('welcome');
+            //} //else {
+                //$this->session->set_flashdata('notice', 'Vui lòng điền đầy đủ thông tin!');
+            //}
+            //valid
+            /*$arrError = [];
+            if ($arrError) {
+
+                $this->session->set_flashdata('arrData', $arrError);
+                redirect('gioi-thieu-khach-hang');
+            }*/
+        }
         $this->load->view('gioi-thieu-khach-hang');
     }
 
@@ -574,60 +667,9 @@ class Customer extends MX_Controller {
     }
 
     public function completeGioiThieuKhachHang() {
-        $this->load->helper('url');
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-        $this->form_validation->set_rules('lien-he-ho-va-ten', 'Họ và tên', 'required');
-        $this->form_validation->set_rules('lien-he-dia-chi', 'Địa chỉ', 'required');
-        $this->form_validation->set_rules('lien-he-so-dien-thoai', 'Số điện thoại', 'required');
-        $this->form_validation->set_rules('gioi-thieu-ho-va-ten', 'Họ và tên', 'required');
-        $this->form_validation->set_rules('gioi-thieu-dia-chi', 'Địa chỉ', 'required');
-        $this->form_validation->set_rules('gioi-thieu-so-dien-thoai', 'Số điện thoại', 'required');
-        
-        /*$arrView = [
-            'Success' => '',
-            'Error' => ''
-        ];*/
-        
-        if($this->form_validation->run()){
-            $lhhoten = $this->input->post('lien-he-ho-va-ten');
-            $lhdiachi = $this->input->post('lien-he-dia-chi');
-            $lhsdt = $this->input->post('lien-he-so-dien-thoai');
-            $lhcmnd = $this->input->post('lien-he-cmnd');
-            $lhkmcn = $this->input->post('lien-he-ma-khuyen-mai-ca-nhan');
-            $gthoten = $this->input->post('gioi-thieu-ho-va-ten');
-            $gtdiachi = $this->input->post('gioi-thieu-dia-chi');
-            $gtsdt = $this->input->post('gioi-thieu-so-dien-thoai');
-            $gtcmnd = $this->input->post('gioi-thieu-cmnd');
-            
-            $data = array(
-                    'customer_one_name' => $lhhoten,
-                    'customer_one_address' => $lhdiachi,
-                    'customer_one_phone' => $lhsdt,
-                    'customer_one_cmnd' => $lhcmnd,
-                    'customer_one_promotion_code' => $lhkmcn,
-                    'customer_two_name' => $gthoten,
-                    'customer_two_address' => $gtdiachi,
-                    'customer_two_phone' => $gtsdt,
-                    'customer_two_cmnd' => $gtcmnd
-                );  
-            
-            $this->load->model('customer_introduced');
-            $result=$this->customer_introduced->form_insert($data);
-            //p($result);die;
-            if($result==1){
-                redirect('welcome');
-            }  else {
-                $this->session->set_flashdata('notice','Vui lòng điền đầy đủ thông tin!');
-            }
-            
-        }else{
-            $this->load->view('gioi-thieu-khach-hang');
-            //$arrView['Error'] = 'Lỗi !';
-            redirect('gioi-thieu-khach-hang');
-        }  
+        //$this->load->helper('url');
     }
+
 }
- 
 
 ?>
