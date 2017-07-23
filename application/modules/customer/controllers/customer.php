@@ -7,8 +7,8 @@ class Customer extends MX_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->library('session');
 
+        $this->load->library('session');
     }
 
     public function index() {
@@ -131,6 +131,7 @@ class Customer extends MX_Controller {
         if (!$stepOneComplete || !$stepTwoComplete || !$stepFourComplete || !$stepFiveComplete) {
             redirect(base_url());
         }
+        
 
         //save session in db
         $arrDataInsert = [
@@ -163,9 +164,9 @@ class Customer extends MX_Controller {
             'step_five_promotion_code' => $arrDataStepFive['mkm']
         ];
         $loanModel = $this->load->model('loan');
-
+     
         $loanModel->insert($arrDataInsert);
-
+  
         //unset all session loan
         $arrayItems = array('loanStepOne' => '', 'loanStepTwo' => '', 'loanStepThree' => '', 'loanStepFour' => '');
 
@@ -556,7 +557,7 @@ class Customer extends MX_Controller {
                 'stepFiveComplete' => true
             ]
         ];
-
+        
         $this->session->set_userdata($stepFive);
 
         $camOnUrl = base_url('cam-on');
@@ -574,60 +575,34 @@ class Customer extends MX_Controller {
     }
 
     public function completeGioiThieuKhachHang() {
-        $this->load->helper('url');
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-        $this->form_validation->set_rules('lien-he-ho-va-ten', 'Họ và tên', 'required');
-        $this->form_validation->set_rules('lien-he-dia-chi', 'Địa chỉ', 'required');
-        $this->form_validation->set_rules('lien-he-so-dien-thoai', 'Số điện thoại', 'required');
-        $this->form_validation->set_rules('gioi-thieu-ho-va-ten', 'Họ và tên', 'required');
-        $this->form_validation->set_rules('gioi-thieu-dia-chi', 'Địa chỉ', 'required');
-        $this->form_validation->set_rules('gioi-thieu-so-dien-thoai', 'Số điện thoại', 'required');
-        
-        /*$arrView = [
-            'Success' => '',
-            'Error' => ''
-        ];*/
-        
-        if($this->form_validation->run()){
-            $lhhoten = $this->input->post('lien-he-ho-va-ten');
-            $lhdiachi = $this->input->post('lien-he-dia-chi');
-            $lhsdt = $this->input->post('lien-he-so-dien-thoai');
-            $lhcmnd = $this->input->post('lien-he-cmnd');
-            $lhkmcn = $this->input->post('lien-he-ma-khuyen-mai-ca-nhan');
-            $gthoten = $this->input->post('gioi-thieu-ho-va-ten');
-            $gtdiachi = $this->input->post('gioi-thieu-dia-chi');
-            $gtsdt = $this->input->post('gioi-thieu-so-dien-thoai');
-            $gtcmnd = $this->input->post('gioi-thieu-cmnd');
-            
-            $data = array(
-                    'customer_one_name' => $lhhoten,
-                    'customer_one_address' => $lhdiachi,
-                    'customer_one_phone' => $lhsdt,
-                    'customer_one_cmnd' => $lhcmnd,
-                    'customer_one_promotion_code' => $lhkmcn,
-                    'customer_two_name' => $gthoten,
-                    'customer_two_address' => $gtdiachi,
-                    'customer_two_phone' => $gtsdt,
-                    'customer_two_cmnd' => $gtcmnd
-                );  
-            
-            $this->load->model('customer_introduced');
-            $result=$this->customer_introduced->form_insert($data);
-            //p($result);die;
-            if($result==1){
-                redirect('welcome');
-            }  else {
-                $this->session->set_flashdata('notice','Vui lòng điền đầy đủ thông tin!');
-            }
-            
-        }else{
-            $this->load->view('gioi-thieu-khach-hang');
-            //$arrView['Error'] = 'Lỗi !';
-            redirect('gioi-thieu-khach-hang');
-        }  
-    }
-}
- 
+        $arrResp = [
+            'isError' => true,
+            'message' => 'Lỗi !',
+            'data' => []
+        ];
 
-?>
+        $params = $this->input->post();
+
+        if (empty($params)) {
+            $arrResp['message'] = 'Dữ liệu không hợp lệ !';
+            echo json_encode($arrResp);
+            return false;
+        }
+
+        //luu du lieu
+
+        $camOnUrl = base_url('cam-on');
+
+        $arrResp = [
+            'isError' => false,
+            'message' => 'Thành công',
+            'data' => [
+                'camOnUrl' => $camOnUrl
+            ]
+        ];
+
+        echo json_encode($arrResp);
+        return true;
+    }
+
+}

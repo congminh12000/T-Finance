@@ -76,11 +76,11 @@ $route = $this->uri->segment(1);
                 <script src="<?php echo $baseUrl . 'static/customer/js/my/loanStepFive.js'; ?>" type="text/javascript"></script>
                 <?php
                 break;
-            //case 'gioi-thieu-khach-hang':
+            case 'gioi-thieu-khach-hang':
                 ?>
-                <!--<script src="<?php echo $baseUrl . 'static/customer/js/my/gioi-thieu-khach-hang.js'; ?>" type="text/javascript"></script>-->
+                <script src="<?php echo $baseUrl . 'static/customer/js/my/gioi-thieu-khach-hang.js'; ?>" type="text/javascript"></script>
                 <?php
-                //break;
+                break;
             default:
                 break;
         endswitch;

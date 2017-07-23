@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Web/Core/T-Finance-core/application/config/config.php</file>
-            <file>file:/D:/Web/Core/T-Finance-core/application/modules/customer/views/gioi-thieu-khach-hang.php</file>
-            <file>file:/D:/Web/Core/T-Finance-core/application/models/customer_introduced.php</file>
-            <file>file:/D:/Web/Core/T-Finance-core/application/config/database.dist.php</file>
-            <file>file:/D:/Web/Core/T-Finance-core/system/language/english/form_validation_lang.php</file>
-            <file>file:/D:/Web/Core/T-Finance-core/application/modules/customer/controllers/customer.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

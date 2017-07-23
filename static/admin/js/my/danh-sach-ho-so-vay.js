@@ -1,27 +1,15 @@
 $(document).ready(function () {
-    
+
     $('.btn-view-detail').click(function () {
         var data = $(this).data('json');
-
-        if (typeof listStepOneLabel == 'undefined' || typeof listStepTwoLabel == 'undefined' ||
-                typeof listStepThreeLabel == 'undefined' || typeof listStepFourLabel == 'undefined' || typeof listStepFiveLabel == 'undefined') {
-            swal('Lỗi !', 'Không thể lấy đc dữ liệu !', 'error');
-            return false;
-        }
-        
-        var _listStepOneLabel = JSON.parse(listStepOneLabel);
-        var _listStepTwoLabel = JSON.parse(listStepTwoLabel);
-        var _listStepThreeLabel = JSON.parse(listStepThreeLabel);
-        var _listStepFourLabel = JSON.parse(listStepFourLabel);
-        var _listStepFiveLabel = JSON.parse(listStepFiveLabel);
-
+console.log(data);
         var html = '<label style="color: orange">Bước 1</label>';
-        html += '<p>Vay mua: ' + _listStepOneLabel[data.step_one_buy] + '</p>';
-        html += '<p>Tùy thân: ' + _listStepOneLabel[data.step_one_identification] + '</p>';
+        html += '<p>Vay mua: ' + data.step_one_buy + '<p>';
+        html += '<p>Tùy thân: ' + data.step_one_identification + '</p>';
         html += '<p>Tiền vay: ' + data.step_one_money + ' đ </p>';
         html += '<p>Thời gian vay: ' + data.step_one_month + ' tháng </p>';
         html += '<label style="color: orange">Bước 2</label>';
-        html += '<p>Vay: ' + data.step_two_loan + ' </p>';
+        html += '<p>Vay: ' + data.step_two_loan + ' tháng </p>';
         html += '<label style="color: orange">Bước 3</label><br>';
         html += '<label>Bảo hiểm hằng năm</label>';
         html += '<p>Công ty tham gia: ' + data.step_three_bphn_company + '</p>';
@@ -49,9 +37,10 @@ $(document).ready(function () {
         html += '<p>Sđt: ' + data.step_five_phone + '</p>';
         html += '<p>Mã khuyến mãi: ' + data.step_five_promotion_code + '</p>';
         html += '<p>Zalo: ' + data.step_five_zalo + '</p>';
+        
 
         swal({
-            title: '<span style="color: #ab47bc">Thông tin chi tiết</span>',
+            title: 'Thông tin chi tiết',
             html: html,
             animation: false,
             customClass: 'animated tada'
