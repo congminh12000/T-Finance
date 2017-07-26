@@ -15,6 +15,14 @@ class Customer extends MX_Controller {
         $this->load->view('welcome');
     }
 
+    public function tinTuc(){
+        $this->load->view('tin-tuc');
+    }
+
+    public function chiTietTinTuc(){
+        $this->load->view('chi-tiet-tin-tuc');
+    }
+
     public function loanStepOne() {
         $this->load->view('loan-step-one');
     }
@@ -131,7 +139,7 @@ class Customer extends MX_Controller {
         if (!$stepOneComplete || !$stepTwoComplete || !$stepFourComplete || !$stepFiveComplete) {
             redirect(base_url());
         }
-        
+
 
         //save session in db
         $arrDataInsert = [
@@ -164,9 +172,9 @@ class Customer extends MX_Controller {
             'step_five_promotion_code' => $arrDataStepFive['mkm']
         ];
         $loanModel = $this->load->model('loan');
-     
+
         $loanModel->insert($arrDataInsert);
-  
+
         //unset all session loan
         $arrayItems = array('loanStepOne' => '', 'loanStepTwo' => '', 'loanStepThree' => '', 'loanStepFour' => '');
 
@@ -557,7 +565,7 @@ class Customer extends MX_Controller {
                 'stepFiveComplete' => true
             ]
         ];
-        
+
         $this->session->set_userdata($stepFive);
 
         $camOnUrl = base_url('cam-on');

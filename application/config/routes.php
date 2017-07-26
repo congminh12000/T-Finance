@@ -51,6 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |		my-controller/my-method	-> my_controller/my_method
  */
 
+$route['chi-tiet-tin-tuc'] = 'customer/chiTietTinTuc';
+$route['tin-tuc'] = 'customer/tinTuc';
 $route['step-1'] = 'customer/loanStepOne';
 $route['step-2'] = 'customer/loanStepTwo';
 $route['step-3'] = 'customer/loanStepThree';
