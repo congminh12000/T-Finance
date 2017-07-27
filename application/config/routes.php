@@ -51,8 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |		my-controller/my-method	-> my_controller/my_method
  */
 
-$route['chi-tiet-tin-tuc'] = 'customer/chiTietTinTuc';
-$route['tin-tuc'] = 'customer/tinTuc';
+$route['chi-tiet-tin-tuc-tai-chinh/(:num)'] = 'customer/chiTietTinTucTaiChinh';
+$route['tin-tuc-tai-chinh'] = 'customer/tinTucTaiChinh';
+$route['tin-tuc-tai-chinh/(:num)'] = 'customer/tinTucTaiChinh';
 $route['step-1'] = 'customer/loanStepOne';
 $route['step-2'] = 'customer/loanStepTwo';
 $route['step-3'] = 'customer/loanStepThree';
@@ -61,6 +62,10 @@ $route['step-5'] = 'customer/loanStepFive';
 $route['cam-on'] = 'customer/camOn';
 $route['ve-voi-chung-toi'] = 'customer/veVoiChungToi';
 $route['gioi-thieu-khach-hang'] = 'customer/gioiThieuKhachHang';
+
+$route['news'] = "admin/news";
+$route['news/add'] = "admin/news/add";
+$route['news/(:num)'] = "admin/news";
 
 $route['default_controller'] = 'customer';
 $route['404_override'] = '';

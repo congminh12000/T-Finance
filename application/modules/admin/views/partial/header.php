@@ -96,10 +96,16 @@ $arrUser = $this->session->userData('userLogin');
 
                 <div class="sidebar-wrapper">
                     <ul class="nav">
-                        <li class="active">
+                    <li class="<?php echo $module == 'admin' ? 'active' : ''; ?>">
                             <a href="<?php echo base_url('admin'); ?>">
                                 <i class="material-icons">dashboard</i>
                                 <p>Danh sách hồ sơ vay</p>
+                            </a>
+                        </li>
+                        <li class="<?php echo $module == 'news' ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url('news'); ?>">
+                                <i class="material-icons">dashboard</i>
+                                <p>Tin Tức tài chính</p>
                             </a>
                         </li>
                     </ul>

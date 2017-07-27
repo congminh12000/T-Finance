@@ -9,18 +9,65 @@ class Customer extends MX_Controller {
         parent::__construct();
 
         $this->load->library('session');
+        $this->load->helper('paginator');
     }
 
     public function index() {
         $this->load->view('welcome');
     }
 
-    public function tinTuc(){
-        $this->load->view('tin-tuc');
+    public function tinTucTaiChinh(){
+
+        $newsModel = $this->load->model('news_model');
+
+        $arrConditions = [
+            'deleted' => 0
+        ];
+
+        $limit = 2;
+        $total = $newsModel->getTotal($arrConditions);
+
+        $paginator = getPaginator($total, $limit, base_url('tin-tuc-tai-chinh'));
+
+        $offset  =  ($this->uri->segment(2)=='') ? 0 : $this->uri->segment(2);
+
+        $arrNews = $newsModel->getPaginator($arrConditions, $limit, $offset);
+
+        $arrData = [
+            'arrNews' => $arrNews,
+            'paginator' => $paginator
+        ];
+
+
+        $this->load->view('tin-tuc-tai-chinh', $arrData);
     }
 
-    public function chiTietTinTuc(){
-        $this->load->view('chi-tiet-tin-tuc');
+    public function chiTietTinTucTaiChinh(){
+
+        $id = (int) $this->uri->segment(2);
+
+        if(!$id){
+            redirect(base_url('tin-tuc-tai-chinh'));
+        }
+
+        $newsModel = $this->load->model('news_model');
+
+        $arrConditions = [
+            'deleted' => 0,
+            'id' => $id
+        ];
+
+        $news = $newsModel->getDetail($arrConditions);
+
+        if(empty($news)){
+            redirect(base_url('tin-tuc-tai-chinh'));
+        }
+
+        $arrData = [
+            'news' => $news
+        ];
+
+        $this->load->view('chi-tiet-tin-tuc-tai-chinh', $arrData);
     }
 
     public function loanStepOne() {
