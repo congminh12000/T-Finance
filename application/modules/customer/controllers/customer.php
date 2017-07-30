@@ -646,6 +646,14 @@ class Customer extends MX_Controller {
         }
 
         //luu du lieu
+        foreach($params as &$item){
+            $item = trim($item);
+        }
+
+        //save
+        $customerIntroducedModel = $this->load->model('customer_introduced_model');
+
+        $customerIntroducedModel->insert($params);
 
         $camOnUrl = base_url('cam-on');
 
