@@ -6,12 +6,14 @@
             </div>
         <?php endif; ?>
 
-            <?php if ($messageError) {?>
+            <?php if ($arrMessageError) : ?>
                 <div class="alert alert-danger">
-                    <span><?php echo $messageError; ?></span>
+                    <?php foreach($arrMessageError as $error) : ?>
+                        <span><?php echo $error; ?></span>
+                    <?php endforeach; ?>
                 </div>
 
-            <?php }?>
+            <?php endif; ?>
 
             <?php echo form_open_multipart(''); ?>
 
@@ -19,47 +21,73 @@
                 <div class="col-md-12">
                     <div class="form-group label-floating">
                             <label class="control-label">Tiêu đề</label>
-                            <input type="text" name="title" class="form-control" value="<?php echo set_value('title'); ?>">
+                            <input type="text" name="title" class="form-control" value="<?php echo set_value('title', $news['title']); ?>">
                         </div>
                     </div>
                 <div class="col-md-12">
                     <div class="form-group label-floating">
                             <label class="control-label">Tác giả</label>
-                            <input type="text" name="author" class="form-control" value="<?php echo set_value('author'); ?>">
+                            <input type="text" name="author" class="form-control" value="<?php echo set_value('author', $news['author']); ?>">
                     </div>
                 </div>
                     <div class="col-md-12">
                         <!-- <div class="form&#45;group label&#45;floating"> -->
                             <label class="control-label">Ảnh đại diện</label>
                             <input type="file" class="" name="avatar" accept="image/*">
+
+                            <?php if(isset($news['avatar'])): ?>
+                                <img src="<?php echo base_url('static/admin/img/news/' . $news['avatar']); ?>" style="width: 200px; height: 100px" /><br/>
+                            <?php endif; ?>
+
                             <small style="color: red">( Kích thước tối đa 600 x 400 px, dung lượng tối đa 5MB )</small>
+
                         <!-- </div> -->
                     </div>
                     <div class="col-md-12">
                         <div class="form-group label-floating">
-                            <label class="control-label">Ẩn bài viết</label>
-                            <input type="radio" name="status" class="form-control" value="1" <?php echo set_radio('status', '1', true); ?> />
+                            <label class="control-label">Hiện bài viết</label>
+                            <input type="radio" name="status" class="form-control" value="1" <?php echo isset($news) ? ( $news['status'] == 1 ? 'checked' : '' ) : set_radio('status', '1', true ); ?> />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group label-floating">
-                            <label class="control-label">Hiện bài viết</label>
-                            <input type="radio" name="status" class="form-control" value="0" <?php echo set_radio('status', '0'); ?>>
+                            <label class="control-label">Ẩn bài viết</label>
+                            <input type="radio" name="status" class="form-control" value="0" <?php echo isset($news) ? ( $news['status'] == 0 ? 'checked' : '' ) : set_radio('status', '0'); ?>>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group label-floating">
                             <label class="control-label">Mô tả ngắn</label><br>
-                            <textarea id="ck-description" name="description"><?php echo set_value('description'); ?></textarea>
+                            <textarea id="ck-description" name="description"><?php echo set_value('description', $news['description']); ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group label-floating">
                             <label class="control-label">Nội dung</label><br>
-                             <textarea id="ck-content" name="content"><?php echo set_value('content'); ?></textarea>
+                             <textarea id="ck-content" name="content"><?php echo set_value('content', $news['content']); ?></textarea>
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Meta title</label>
+                            <input type="text" name="metaTitle" class="form-control" value="<?php echo set_value('metaTitle', $news['meta_title']); ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Meta keyword</label>
+                            <input type="text" name="metaKeyword" class="form-control" value="<?php echo set_value('metaKeyword', $news['meta_keyword']); ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Meta description</label>
+                            <input type="text" name="metaDescription" class="form-control" value="<?php echo set_value('metaDescription', $news['meta_description']); ?>">
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-success pull-right">

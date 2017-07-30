@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class News extends MX_Controller {
 
-    protected $_messageError = '';
+    protected $_arrMessageError = [];
 
     public function __construct() {
         parent::__construct();
@@ -21,7 +21,7 @@ class News extends MX_Controller {
             'deleted' => 0
         ];
 
-        $limit = 2;
+        $limit = 10;
         $total = $newsModel->getTotal($arrConditions);
 
         $paginator = getPaginator($total, $limit, base_url('news'));
@@ -74,6 +74,9 @@ class News extends MX_Controller {
                     'content' => trim($this->input->post('content')),
                     'author' => trim($this->input->post('author')),
                     'status' => (int) $this->input->post('status'),
+                    'meta_title' => trim($this->input->post('metaTitle')),
+                    'meta_keyword' => trim($this->input->post('metaKeyword')),
+                    'meta_description' => trim($this->input->post('metaDescription'))
                 ];
 
                 if($_FILES['avatar']['size']){
@@ -84,7 +87,7 @@ class News extends MX_Controller {
                     } else{
 
                         $arrData = [
-                            'messageError' => $arrUpload['message']['error']
+                            'arrMessageError' => $arrUpload['message']
                         ];
 
                         $this->load->view('news/add-news', $arrData);
@@ -97,16 +100,17 @@ class News extends MX_Controller {
                 $resultInsert = $newsModel->insert($arrInsert);
 
                 if($resultInsert){
+                    $this->session->set_flashdata('save_news_success', 'Thêm thành công');
                     redirect(base_url('news'));
                 } else {
                     $arrData = [
-                        'messageError' => 'Thêm thất bại, vui lòng thử lại !'
+                        'arrMessageError' => 'Thêm thất bại, vui lòng thử lại !'
                     ];
                 }
 
             }else{
                 $arrData = [
-                    'messageError' => $this->_messageError
+                    'arrMessageError' => $this->_arrMessageError
                 ];
             }
         }
@@ -115,11 +119,81 @@ class News extends MX_Controller {
         $this->load->view('news/add-news', $arrData);
     }
 
-    public function edit(){
+    public function edit($id){
+        $id = (int) $id;
 
+        if($id <= 0){
+            redirect(base_url('news'));
+        }
+
+        $newsModel = $this->load->model('news_model');
+
+        $arrConditions = [
+            'deleted' => 0,
+            'id' => $id
+        ];
+
+        $news = $newsModel->getDetail($arrConditions);
+
+        if(empty($news)){
+            redirect(base_url('news'));
+        }
+
+        $arrData = [
+            'news' => $news
+        ];
+
+        if($this->input->post()){
+
+            $isValid = $this->_validFormNews($id);
+
+            if($isValid){
+
+                $arrUpdate = [
+                    'title' => trim($this->input->post('title')),
+                    'description' => trim($this->input->post('description')),
+                    'content' => trim($this->input->post('content')),
+                    'author' => trim($this->input->post('author')),
+                    'status' => (int) $this->input->post('status'),
+                    'meta_title' => trim($this->input->post('metaTitle')),
+                    'meta_keyword' => trim($this->input->post('metaKeyword')),
+                    'meta_description' => trim($this->input->post('metaDescription'))
+                ];
+
+                if($_FILES['avatar']['size']){
+                    $resultUpload = $this->uploadAvatar();
+
+                    if($resultUpload['isError'] == false){
+                        $arrUpdate['avatar'] = $_FILES['avatar']['name'];
+                    } else{
+
+                        $arrData['arrMessageError'] = $resultUpload['message'];
+
+                        $this->load->view('news/edit-news', $arrData);
+                        return this;
+                    }
+                }
+
+                $newsModel = $this->load->model('news_model');
+
+                $resultUpdate = $newsModel->update($arrUpdate, $id);
+
+                if($resultUpdate){
+                    $this->session->set_flashdata('save_news_success', 'Cập nhật thành công');
+                    redirect(base_url('news'));
+                } else {
+                    $arrData['arrMessageError'] = 'Cập nhật thất bại, vui lòng thử lại !';
+                }
+
+            }else{
+                $arrData['arrMessageError'] = $this->_arrMessageError;
+            }
+        }
+
+        $this->load->view('news/edit-news', $arrData);
     }
 
-    protected function _validFormNews(){
+    protected function _validFormNews($id){
 
         $formValidation = $this->form_validation;
 
@@ -127,26 +201,51 @@ class News extends MX_Controller {
             ->set_rules('content', 'Nội dung', 'trim')
             ->set_rules('author', 'Tác giả', 'trim')
             ->set_rules('status', 'Trạng thái', '')
-            ->set_rules('description', 'Mô tả ngắn', 'trim');
+            ->set_rules('description', 'Mô tả ngắn', 'trim')
+            ->set_rules('metaTitle', 'Meta title', 'trim')
+            ->set_rules('metaKeyword', 'Meta keyword', 'trim')
+            ->set_rules('metaDescription', 'Meta description', 'trim');
+
+        $title = trim($this->input->post('title'));
+
+        $newsModel = $this->load->model('news_model');
+
+        //valid same value db
+        if($title){
+            $arrConditions = [
+                'deleted' => 0,
+                'title' => $title
+            ];
+
+            if($id > 0){
+                $arrConditions['notId'] = $id;
+            }
+
+            $news = $newsModel->getDetail($arrConditions);
+
+            if($news){
+                $this->_arrMessageError[] = 'Tiêu đề đã tồn tại, vui lòng đặt tiêu đề khác !';
+            }
+        }
 
         //valid upload
         if($_FILES['avatar']['size']){
             $arrResp = $this->uploadCheck($_FILES['avatar']);
 
             if($arrResp['isError']){
-                $this->_messageError = $arrResp['message'];
-
-                return false;
+                $this->_arrMessageError[] = $arrResp['message'];
             }
 
         }
 
-        if ($formValidation->run() == FALSE)
-        {
-                return false;
+        $isFormValid = $formValidation->run();
+
+        if($this->_arrMessageError){
+            $isFormValid = false;
         }
 
-        return true;
+        return $isFormValid;
+
     }
 
     public function uploadCheck($file){

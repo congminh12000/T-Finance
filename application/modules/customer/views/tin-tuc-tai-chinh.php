@@ -16,7 +16,9 @@
        	  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center box_news">
           <h2><a href="<?php echo base_url('chi-tiet-tin-tuc-tai-chinh/' . $new->id ); ?>" target="_self"><?php echo $new->title; ?></a></h2>
           <p>Viết bởi <b><?php echo $new->author; ?></b> vào <?php echo $new->created_at; ?></p>
-                <img src="<?php echo  base_url('static/admin/img/news/' . $new->avatar); ?>" alt="(Tiêu đề bài viết)" class="img-responsive" width="600" height="400">
+                <a href="<?php echo base_url('chi-tiet-tin-tuc-tai-chinh/' . $new->id ); ?>" target="_self">
+                    <img src="<?php echo  base_url('static/admin/img/news/' . $new->avatar); ?>" alt="(Tiêu đề bài viết)" class="img-responsive" width="600" height="400">
+                </a>
                 <p><?php echo $new->description; ?></p>
                 <h5><a href="<?php echo base_url('chi-tiet-tin-tuc-tai-chinh/' . $new->id ); ?>" target="_self">Xem thêm <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></h5>
                 </div> <!--End col-->

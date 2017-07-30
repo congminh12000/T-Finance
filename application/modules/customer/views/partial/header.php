@@ -1,17 +1,33 @@
 <?php
 $baseUrl = $this->config->base_url();
 $route = $this->uri->segment(1);
-//$action = $this->uri->segment(2);
+$id = $this->uri->segment(2);
+
+$this->load->helper('meta');
+$metaTitle = 'Dịch vụ tư vấn tài chính trực tuyến';
+$metaKeyWord = 'dich vu tu van tai chinh, quang nam, da nang, quảng nam, đà nẵng, dịch vụ tư vấn, tài chính';
+$metaDescription =  'Dịch vụ tư vấn tài chính trực tuyến';
+
+//get mete SEO
+switch($route){
+    case 'chi-tiet-tin-tuc-tai-chinh':
+
+        $arrMeta = getMetaHelper($id);
+        $arrMeta['metaTitle'] ? $metaTitle = $arrMeta['metaTitle'] : '';
+        $arrMeta['metaKeyword'] ? $metaKeyWord = $arrMeta['metaKeyword'] : '';
+        $arrMeta['metaDescription'] ? $metaDescription = $arrMeta['metaDescription'] : '';
+        break;
+}
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>T-Finance - Dịch vụ tư vấn tài chính online</title>
-        <meta name="title" content="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
-        <meta name="description" content="T-Finance - Dịch vụ tư vấn tài chính trực tuyến">
-        <meta name="keywords" content="dich vu tu van tai chinh, quang nam, da nang, quảng nam, đà nẵng, dịch vụ tư vấn, tài chính">
+        <title>T-Finance - <?php echo $metaTitle; ?></title>
+        <meta name="title" content="T-Finance - <?php echo $metaTitle; ?>">
+        <meta name="description" content="T-Finance - <?php echo $metaDescription; ?>">
+        <meta name="keywords" content="<?php echo $metaKeyWord; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- css core -->
@@ -100,4 +116,4 @@ $route = $this->uri->segment(1);
 
         <?php $this->load->view("navbar"); ?>
         <?php $this->load->view("slideshow"); ?>
-        
+

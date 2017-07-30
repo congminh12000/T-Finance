@@ -21,10 +21,11 @@ class Customer extends MX_Controller {
         $newsModel = $this->load->model('news_model');
 
         $arrConditions = [
-            'deleted' => 0
+            'deleted' => 0,
+            'status' => 1
         ];
 
-        $limit = 2;
+        $limit = 8;
         $total = $newsModel->getTotal($arrConditions);
 
         $paginator = getPaginator($total, $limit, base_url('tin-tuc-tai-chinh'));

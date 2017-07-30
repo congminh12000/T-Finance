@@ -1,6 +1,8 @@
 <?php
 
-class News_model extends CI_Model {
+class Category_model extends CI_Model {
+
+    protected $_table = 'category';
 
     function __construct() {
         parent::__construct();
@@ -11,7 +13,7 @@ class News_model extends CI_Model {
             return false;
         }
 
-        $isInsert = $this->db->insert('new', $arrData);
+        $isInsert = $this->db->insert($this->_table, $arrData);
 
         return $isInsert;
     }
@@ -22,41 +24,22 @@ class News_model extends CI_Model {
         }
 
             $this->db->where('id', $id);
-            $this->db->update('new', $arrData);
+            $this->db->update($this->_table, $arrData);
             return true;
     }
 
     public function getList($arrConditions = []) {
         $this->_addWhere($arrConditions);
 
-        $query = $this->db->from('new')
+        $query = $this->db->from($this->_table)
             ->order_by('id', 'DESC')
             ->get();
 
         return $query->result_array();
     }
 
-    public function getTotal($arrConditions)
-    {
-        $this->_addWhere($arrConditions);
-
-    	return $this->db->select()->get('new')->num_rows();
-    }
-
-    public function getPaginator($arrConditions, $limit = 20, $offset = 1){
-        $this->_addWhere($arrConditions);
-
-        $new = $this->db->select()
-            ->limit($limit, $offset)
-    					->order_by('id', 'DESC')
-                        ->get('new')
-                        ->result();
-
-        return $new;
-    }
-
     public function getDetail($arrConditions = []) {
-        $this->db->from('new');
+        $this->db->from($this->_table);
 
         $this->_addWhere($arrConditions);
 
@@ -74,12 +57,16 @@ class News_model extends CI_Model {
             $this->db->where('deleted', $arrConditions['deleted']);
         }
 
+        if (isset($arrConditions['parent_id'])) {
+            $this->db->where('parent_id', $arrConditions['parent_id']);
+        }
+
         if ($arrConditions['id']) {
             $this->db->where('id', $arrConditions['id']);
         }
 
-        if ($arrConditions['title']) {
-            $this->db->where('title', $arrConditions['title']);
+        if ($arrConditions['name']) {
+            $this->db->where('name', $arrConditions['name']);
         }
 
         if ($arrConditions['notId']) {

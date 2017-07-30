@@ -108,6 +108,12 @@ $arrUser = $this->session->userData('userLogin');
                                 <p>Tin Tức tài chính</p>
                             </a>
                         </li>
+                        <li class="<?php echo $module == 'category' ? 'active' : ''; ?>">
+                            <a href="<?php echo base_url('category'); ?>">
+                                <i class="material-icons">dashboard</i>
+                                <p>Danh mục</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

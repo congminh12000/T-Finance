@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
 
-            <?php if($this->session->flashdata('save_news_success')): ?>
+            <?php if($this->session->flashdata('save_category_success')): ?>
             <?php echo '<div class="alert alert-success"><span>' .
-            $this->session->flashdata('save_news_success') .
+            $this->session->flashdata('save_category_success') .
                 '</span></div>';
             ?>
             <?php endif; ?>
@@ -14,49 +14,49 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
-                        <h4 class="title">Danh sách tin tức tài chính
-                        <a href="<?php echo base_url('news/add'); ?>" class="btn btn-success" style="margin-left: 60%"><i class="fa fa-plus"></i> Thêm tin tức</a>
+                        <h4 class="title">Danh sách danh mục
+                            <a href="<?php echo base_url('category/add'); ?>" class="btn btn-success" style="margin-left: 60%"><i class="fa fa-plus"></i> Thêm danh mục</a>
                         </h4>
-                        <!--<p class="category">Here is a subtitle for this table</p>-->
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table">
                             <thead class="text-primary">
-                            <th>Tiêu đề</th>
-                            <th>Tác giả</th>
-                            <th>Ngày tạo</th>
-                            <th>Ảnh đại diện</th>
-                            <th>Trạng thái</th>
-                            <th>Chức năng</th>
+                            <th>Danh mục</th>
                             </thead>
                             <tbody>
-                            <?php if(count($arrNews)): ?>
-                                <?php foreach ($arrNews as $i_key => $new) {
+                            <?php if(count($arrCategory)): ?>
+                                <?php foreach ($arrCategory as $category) {
 
-                                $status = $new->status ? '<p style="color: green">Kích hoạt</p>' : '<p style="color: red">Chưa kích hoạt</p>';
+                                $status = $category['status'] ? '<span style="color: green">Kích hoạt</span>' : '<span style="color: red">Chưa kích hoạt</span>';
                                 ?>
                                 <tr>
-                                    <td><?php echo $new->title;?></td>
-                                    <td><?php echo $new->author;?></td>
-                                    <td><?php echo $new->created_at;?></td>
                                     <td>
-                                        <?php if($new->avatar): ?>
-                                        <img src="<?php echo base_url('static/admin/img/news/' . $new->avatar); ?>" style="width: 200px; height: 100px" />
+                                        <?php echo $category['name']; ?>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        <?php echo $status; ?>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                                        <a class="btn btn-default btn-xs" href="<?php echo base_url('category/edit/' . $category['id'] ); ?>"><i class="fa fa-pencil"></i> Sửa</a>
+                                        <button class="btn btn-danger btn-xs btn-remove" data-id="<?php echo $category['id']; ?>"><i class="fa fa-times"></i> Xóa</button>
+
+                                        <?php if(count($category['children'])): ?>
+                                            <?php foreach($category['children'] as $child):
+
+                                                $status = $child['status'] ? '<span style="color: green">Kích hoạt</span>' : '<span style="color: red">Chưa kích hoạt</span>';
+                                            ?>
+
+                                                <?php echo '<br/> &nbsp; &nbsp; &#8888; ' . $child['name']; ?>
+                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                <?php echo $status; ?>
+                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                <a class="btn btn-default btn-xs" href="<?php echo base_url('category/edit/' . $child['id'] ); ?>"><i class="fa fa-pencil"></i> Sửa</a>
+                                                <button class="btn btn-danger btn-remove btn-xs" data-id="<?php echo $child['id']; ?>"><i class="fa fa-times"></i> Xóa</button>
+                                            <?php endforeach; ?>
                                         <?php endif; ?>
-                                    </td>
-                                    <td><?php echo $status; ?></td>
-                                    <td>
-                                    <a class="btn btn-default" href="<?php echo base_url('news/edit/' . $new->id ); ?>"><i class="fa fa-pencil"></i> Sửa</a><br/>
-                                    <button class="btn btn-danger btn-remove" data-id="<?php echo $new->id; ?>"><i class="fa fa-times"></i> Xóa</button>
                                     </td>
                                 </tr>
                             <?php }?>
 
-                                <tr>
-                                            <td colspan="100">
-                                                <?php echo $paginator;?>
-                                            </td>
-                                        </tr>
                             <?php else: ?>
                                 <tr>
                                     <td colspan="100" style="text-align: center">Không có dữ liệu</td>
@@ -89,7 +89,7 @@ $('.btn-remove').click(function () {
                     return new Promise(function (resolve, reject) {
 
                         $.ajax({
-                            url: '<?php echo base_url("news/remove"); ?>',
+                            url: '<?php echo base_url("category/remove"); ?>',
                             type: 'GET',
                             dataType: 'JSON',
                             data: {
