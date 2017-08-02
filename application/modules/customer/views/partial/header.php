@@ -116,5 +116,9 @@ switch($route){
         </div>
 
         <?php $this->load->view("navbar"); ?>
-        <?php $this->load->view("slideshow"); ?>
 
+        <?php if($this->uri->segment(1) == 'tin-tuc-tai-chinh'): ?>
+            <div style="padding-bottom: 70px"></div>
+        <?php else: ?>
+            <?php $this->load->view("slideshow"); ?>
+        <?php endif; ?>
