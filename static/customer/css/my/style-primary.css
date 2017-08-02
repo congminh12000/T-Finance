@@ -2,6 +2,7 @@
 /* CSS Document */
 body {
     font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 /*Index*/
 .navbar-default {
@@ -374,6 +375,146 @@ button.form-button-ngay:hover:enabled {
     border: 1px solid #6d0100;
     border-radius: 20px;
 }
+/* News */
+.news {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+.news h4 a:link, .news h4 a:visited {
+    color: #333333;
+}
+.news h4 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
+.news h1 {
+    font-size: 26px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+}
+.news .box_news {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.news .box_news p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.news .box_news h2 {
+    font-size: 18px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    line-height: 26px;
+    height: 48px;
+}
+.news .box_news h2 a:link, .news .box_news h2 a:visited {
+    color: #333333;
+}
+.news .box_news h2 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
+.news .box_news h5 a:link, .news .box_news h5 a:visited {
+    color: #333333;
+}
+.news .box_news h5 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
+/* News Detail */
+.newsdetail {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+.newsdetail h3 {
+    padding-bottom: 90px;
+    font-size: 18px;
+}
+.newsdetail h3 a:link, .newsdetail h3 a:visited {
+    color: #333333;
+}
+.newsdetail h3 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
+.newsdetail h4 {
+    padding-bottom: 90px;
+    font-size: 18px;
+    line-height: 26px;
+}
+.newsdetail h4 a:link, .newsdetail h4 a:visited {
+    color: #333333;
+}
+.newsdetail h4 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
+.newsdetail .box_sidebar {
+    padding-bottom: 15px;
+}
+.linenews {
+    display: block;
+    width: 100%;
+    border-top: 2px solid #CCC;
+}
+.newsdetail .box_sidebar h2 {
+    font-size: 28px;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding-bottom: 30px;
+}
+.newsdetail .box_sidebar .box_newest {
+    padding-bottom: 15px;
+}
+.newsdetail .box_sidebar .box_newest h4 {
+    font-size: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    line-height: 17px;
+}
+.newsdetail .box_sidebar .box_newest h4 a:link, .newsdetail .box_sidebar .box_newest h4 a:visited {
+    color: #333333;
+}
+.newsdetail .box_sidebar .box_newest h4 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
+.newsdetail .box_sidebar .box_newest p {
+    font-size: 12px;
+    color: #CCC;
+}
+.newsdetail .box_newsdetail h2 {
+    font-size: 18px;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-top: 0px;
+    font-weight: bold;
+}
+.newsdetail .newsrelative {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.newsdetail .newsrelative h5 {
+    color: #666666;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+}
+.newsdetail .newsrelative h6 {
+    padding-top: 45px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+}
+.newsdetail .box_newsrelative h4 {
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.newsdetail .box_newsrelative h4 a:link, .newsdetail .box_newsrelative h4 a:visited {
+    color: #333333;
+}
+.newsdetail .box_newsrelative h4 a:hover {
+    color: #630403;
+    text-decoration: none;
+}
 @media only screen and (max-width: 1366px) {
 }
 @media only screen and (max-width: 992px) {
@@ -450,130 +591,5 @@ button.form-button-ngay {
     }
 }
 
-/* News */
-.news {
-	padding-top: 45px;
-	padding-bottom: 45px;
-}
-.news h4 a:link, .news h4 a:visited {
-	color: #333333;
-}
-.news h4 a:hover {
-	color: #630403;
-	text-decoration: none;
-}
-.news h1 {
-	font-size: 26px;
-	font-family: 'Roboto Condensed', sans-serif;
-	font-weight: bold;
-}
-.news .box_news {
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-.news .box_news p {
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.news .box_news h2 {
-	font-size: 18px;
-	font-family: 'Roboto Condensed', sans-serif;
-	font-weight: bold;
-}
-.news .box_news h2 a:link, .news .box_news h2 a:visited {
-	color: #333333;
-}
-.news .box_news h2 a:hover {
-	color: #630403;
-	text-decoration: none;
-}
-.news .box_news h5 a:link, .news .box_news h2 a:visited {
-	color: #333333;
-}
-.news .box_news h5 a:hover {
-	color: #630403;
-	text-decoration: none;
-}
-/* News Detail */
-.newsdetail {
-	padding-top: 45px;
-	padding-bottom: 45px;
-}
-.newsdetail h3 {
-	padding-bottom: 90px;
-	font-size: 18px;
-}
-.newsdetail h3 a:link, .news h3 a:visited {
-	color: #333333;
-}
-.newsdetail h3 a:hover {
-	color: #630403;
-	text-decoration: none;
-}
-.newsdetail .box_sidebar {
-	padding-bottom: 15px;
-}
-.linenews {
-	display: block;
-	width: 100%;
-	border-top: 2px solid #CCC;
-}
-.newsdetail .box_sidebar h2 {
-	font-size: 28px;
-	font-family: 'Roboto Condensed', sans-serif;
-	padding-bottom: 30px;
-}
-.newsdetail .box_sidebar .box_newest {
-	padding-bottom: 15px;
-}
-.newsdetail .box_sidebar .box_newest h4 {
-	font-size: 15px;
-	padding-bottom: 10px;
-	margin-bottom: 0px;
-	line-height: 17px;
-}
-.newsdetail .box_sidebar .box_newest h4 a:link, .newsdetail .box_sidebar .box_newest h4 a:visited {
-	color: #333333;
-}
-.newsdetail .box_sidebar .box_newest h4 a:hover {
-	color: #630403;
-	text-decoration: none;
-}
-.newsdetail .box_sidebar .box_newest p {
-	font-size: 12px;
-	color: #CCC;
-}
-.newsdetail .box_newsdetail h2 {
-	font-size: 18px;
-	font-family: 'Roboto Condensed', sans-serif;
-	margin-top: 0px;
-	font-weight: bold;
-}
-.newsdetail .newsrelative {
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-.newsdetail .newsrelative h5 {
-	color: #666666;
-	font-family: 'Roboto Condensed', sans-serif;
-	font-weight: bold;
-}
-.newsdetail .newsrelative h6 {
-	padding-top: 45px;
-	padding-bottom: 15px;
-	font-size: 14px;
-	font-family: 'Roboto Condensed', sans-serif;
-	font-weight: bold;
-}
-.newsdetail .box_newsrelative h4 {
-	font-size: 14px;
-	padding-bottom: 5px;
-}
-.newsdetail .box_newsrelative h4 a:link, .newsdetail .box_newsrelative h4 a:visited {
-	color: #333333;
-}
-.newsdetail .box_newsrelative h4 a:hover {
-	color: #630403;
-	text-decoration: none;
-}
+
 
