@@ -1,5 +1,13 @@
 <script type="text/javascript" src="<?php echo base_url('static/admin/ckeditor/ckeditor.js');?>"></script>
 
+<?php
+
+$CI =& get_instance();
+
+$categoryModel = $CI->load->model('category_model');
+$arrCategory = $categoryModel->getMainCategory();
+?>
+
         <?php if(validation_errors()): ?>
             <div class="alert alert-danger">
                 <span><?php echo validation_errors(); ?></span>
@@ -30,6 +38,32 @@
                             <input type="text" name="author" class="form-control" value="<?php echo set_value('author', $news['author']); ?>">
                     </div>
                 </div>
+
+                <div class="col-md-12">
+                    <div class="form-group label-floating">
+                            <label class="control-label">Danh mục</label>
+                            <select class="form-control" name="categoryId">
+                                <option value="0">== Chọn danh mục ==</option>
+                                <?php if($arrCategory): ?>
+                                    <?php foreach($arrCategory as $item): ?>
+                                    <option value="<?php echo $item['id']; ?>" <?php echo set_select('categoryId', $item['id'], $item['id'] == $news['category_id'] ? TRUE : FALSE ); ?>>
+                                        <?php echo $item['name']; ?>
+                                    </option>
+
+                                    <?php if($item['children']): ?>
+                                        <?php foreach($item['children'] as $_item): ?>
+                                        <option value="<?php echo $_item['id']; ?>" <?php echo set_select('categoryId', $_item['id'], $_item['id'] == $news['category_id'] ? TRUE : FALSE ); ?>>
+                                            &nbsp; &nbsp; &#8888; <?php echo $_item['name']; ?>
+                                        </option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                    </div>
+                </div>
+
                     <div class="col-md-12">
                         <!-- <div class="form&#45;group label&#45;floating"> -->
                             <label class="control-label">Ảnh đại diện</label>

@@ -15,6 +15,7 @@ class News extends MX_Controller {
 
     public function index() {
 
+        //get news
         $newsModel = $this->load->model('news_model');
 
         $arrConditions = [
@@ -22,17 +23,24 @@ class News extends MX_Controller {
         ];
 
         $limit = 10;
+        $page = $this->uri->segment(2);
         $total = $newsModel->getTotal($arrConditions);
-
         $paginator = getPaginator($total, $limit, base_url('news'));
+        $arrNews = $newsModel->getPaginator($arrConditions, $page, $limit);
 
-        $offset  =  ($this->uri->segment(2)=='') ? 0 : $this->uri->segment(2);
+        //get category
+        $categoryModel = $this->load->model('category_model');
 
-        $arrNews = $newsModel->getPaginator($arrConditions, $limit, $offset);
+        $arrConditions = [
+            'deleted' => 0,
+        ];
+
+        $arrCategory = $categoryModel->getListKeyId($arrConditions);
 
         $arrData = [
             'arrNews' => $arrNews,
-            'paginator' => $paginator
+            'paginator' => $paginator,
+            'arrCategory' => $arrCategory
         ];
 
         $this->load->view('news/list-news', $arrData);
@@ -74,6 +82,7 @@ class News extends MX_Controller {
                     'content' => trim($this->input->post('content')),
                     'author' => trim($this->input->post('author')),
                     'status' => (int) $this->input->post('status'),
+                    'category_id' => (int) $this->input->post('categoryId'),
                     'meta_title' => trim($this->input->post('metaTitle')),
                     'meta_keyword' => trim($this->input->post('metaKeyword')),
                     'meta_description' => trim($this->input->post('metaDescription'))
@@ -155,6 +164,7 @@ class News extends MX_Controller {
                     'content' => trim($this->input->post('content')),
                     'author' => trim($this->input->post('author')),
                     'status' => (int) $this->input->post('status'),
+                    'category_id' => (int) $this->input->post('categoryId'),
                     'meta_title' => trim($this->input->post('metaTitle')),
                     'meta_keyword' => trim($this->input->post('metaKeyword')),
                     'meta_description' => trim($this->input->post('metaDescription'))
@@ -201,6 +211,7 @@ class News extends MX_Controller {
             ->set_rules('content', 'Nội dung', 'trim')
             ->set_rules('author', 'Tác giả', 'trim')
             ->set_rules('status', 'Trạng thái', '')
+            ->set_rules('category_id', 'Danh mục', '')
             ->set_rules('description', 'Mô tả ngắn', 'trim')
             ->set_rules('metaTitle', 'Meta title', 'trim')
             ->set_rules('metaKeyword', 'Meta keyword', 'trim')

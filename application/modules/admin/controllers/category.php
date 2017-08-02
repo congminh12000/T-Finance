@@ -73,7 +73,8 @@ class Category extends MX_Controller {
                     'parent_id' => (int) $this->input->post('parentId'),
                     'meta_title' => trim($this->input->post('metaTitle')),
                     'meta_keyword' => trim($this->input->post('metaKeyword')),
-                    'meta_description' => trim($this->input->post('metaDescription'))
+                    'meta_description' => trim($this->input->post('metaDescription')),
+                    'icon' => trim($this->input->post('icon'))
                 ];
 
                 $categoryModel = $this->load->model('category_model');
@@ -136,7 +137,8 @@ class Category extends MX_Controller {
                     'parent_id' => (int) $this->input->post('parentId'),
                     'meta_title' => trim($this->input->post('metaTitle')),
                     'meta_keyword' => trim($this->input->post('metaKeyword')),
-                    'meta_description' => trim($this->input->post('metaDescription'))
+                    'meta_description' => trim($this->input->post('metaDescription')),
+                    'icon' => trim($this->input->post('icon'))
                 ];
 
                 $categoryModel = $this->load->model('category_model');
@@ -167,7 +169,8 @@ class Category extends MX_Controller {
             ->set_rules('parentId', '', '')
             ->set_rules('metaTitle', '', 'trim')
             ->set_rules('metaKeyword', '', 'trim')
-             ->set_rules('metaDescription', '', 'trim');
+            ->set_rules('metaDescription', '', 'trim')
+             ->set_rules('icon', '', 'trim');
 
         $name = trim($this->input->post('name'));
 

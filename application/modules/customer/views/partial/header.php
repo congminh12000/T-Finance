@@ -18,6 +18,7 @@ switch($route){
         $arrMeta['metaDescription'] ? $metaDescription = $arrMeta['metaDescription'] : '';
         break;
 }
+
 ?>
 
 <!DOCTYPE html>

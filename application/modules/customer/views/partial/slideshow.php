@@ -1,4 +1,4 @@
-<?php 
+<?php
 $baseUrl = $this->config->base_url();
 ?>
 

@@ -51,10 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |		my-controller/my-method	-> my_controller/my_method
  */
 
-//tin-tuc FO
-$route['chi-tiet-tin-tuc-tai-chinh/(:num)'] = 'customer/chiTietTinTucTaiChinh';
+//tin-tuc-tai-chinh FO
 $route['tin-tuc-tai-chinh'] = 'customer/tinTucTaiChinh';
-$route['tin-tuc-tai-chinh/(:num)'] = 'customer/tinTucTaiChinh';
+$route['tin-tuc-tai-chinh/([^/]+)'] = 'customer/tinTucTaiChinh/$1';
+$route['tin-tuc-tai-chinh/([^/]+)/(:num)'] = 'customer/tinTucTaiChinh/$1/$2';
+$route['tin-tuc-tai-chinh/([^/]+)/([^/]+).html'] = 'customer/chiTietTinTucTaiChinh/$1/$2';
+
 
 //step FO
 $route['step-1'] = 'customer/loanStepOne';
@@ -63,7 +65,7 @@ $route['step-3'] = 'customer/loanStepThree';
 $route['step-4'] = 'customer/loanStepFour';
 $route['step-5'] = 'customer/loanStepFive';
 $route['cam-on'] = 'customer/camOn';
-$route['ve-voi-chung-toi'] = 'customer/veVoiChungToi';
+$route['ve-chung-toi'] = 'customer/veVoiChungToi';
 $route['gioi-thieu-khach-hang'] = 'customer/gioiThieuKhachHang';
 
 //news BO

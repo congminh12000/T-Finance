@@ -17,58 +17,192 @@ class Customer extends MX_Controller {
     }
 
     public function tinTucTaiChinh(){
+        $segment1 = $this->uri->segment(1);
+        $segment2 = $this->uri->segment(2);
+        $segment3 = $this->uri->segment(3);
+        $numSegment = (int) count($this->uri->segment_array());
 
+        if(!$numSegment){
+            redirect(base_url());
+        }
+
+        if($segment1 == $segment2){
+            redirect(base_url($segment1));
+        }
+
+        switch($numSegment){
+            case 1:
+
+                if(is_numeric($segment1)){
+                    redirect(base_url());
+                }
+
+                //get main tin-tuc-tai-chinh
+                $urlPage = base_url($segment1);
+                $arrData = $this->_getTinTucTaiChinh($segment1, $urlPage);
+                $arrSlug = [ $segment1 ];
+
+                break;
+            case 2:
+
+                if(is_numeric($segment2)){//    page
+                    $urlPage = base_url($segment1);
+                    $arrData = $this->_getTinTucTaiChinh($segment1, $urlPage, 2, $segment2);
+                    $arrSlug = [ $segment1 ];
+
+                } else {    //slug
+                    $urlPage = base_url($segment1 . '/' . $segment2);
+                    $arrData = $this->_getTinTucTaiChinh($segment2, $urlPage);
+                    $arrSlug = [ $segment1, $segment2 ];
+
+                }
+
+                break;
+            case 3:
+
+                if(!is_numeric($segment3)){
+                    redirect(base_url());
+                }
+
+                //page
+                $urlPage = base_url($segment1 . '/' . $segment2);
+                $arrData = $this->_getTinTucTaiChinh($segment2, $urlPage, 3, $segment3);
+                $arrSlug = [ $segment1, $segment2 ];
+
+                break;
+            default:
+                redirect(base_url());
+                break;
+        }
+
+        //get tree menu
+        $categoryModel = $this->load->model('category_model');
+
+        $arrConditions = [
+            'deleted' => 0,
+            'status' => 1,
+            'inSlug' => $arrSlug
+        ];
+
+        $arrTreeMenu = $categoryModel->getList($arrConditions, 'ASC');
+
+        $arrData['arrTreeMenu'] = $arrTreeMenu;
+
+        $this->load->view('news/tin-tuc-tai-chinh', $arrData);
+    }
+
+    protected function _getTinTucTaiChinh($slug, $urlPage, $positionSegmentPage = 2, $page = 1){
+
+        //get category
+        $categoryModel = $this->load->model('category_model');
+
+        $arrConditions = [
+            'deleted' => 0,
+            'status' => 1,
+            'slug' => $slug
+        ];
+
+        $category = $categoryModel->getDetail($arrConditions);
+
+        if(empty($category)){
+            redirect(base_url());
+        }
+
+        $arrCategory = $categoryModel->getListParentAndChild($arrConditions);
+
+        if(empty($arrCategory)){
+            redirect(base_url());
+        }
+
+        $arrCategoryId = array_column($arrCategory, 'id');
+
+        //get news
         $newsModel = $this->load->model('news_model');
 
         $arrConditions = [
             'deleted' => 0,
-            'status' => 1
+            'status' => 1,
+            'inCategoryId' => $arrCategoryId
         ];
 
-        $limit = 8;
+        $limit = 6;
         $total = $newsModel->getTotal($arrConditions);
-
-        $paginator = getPaginator($total, $limit, base_url('tin-tuc-tai-chinh'));
-
-        $offset  =  ($this->uri->segment(2)=='') ? 0 : $this->uri->segment(2);
-
-        $arrNews = $newsModel->getPaginator($arrConditions, $limit, $offset);
+        $paginator = getPaginator($total, $limit, $urlPage, $positionSegmentPage);
+        $arrNews = $newsModel->getPaginator($arrConditions, $page, $limit);
 
         $arrData = [
             'arrNews' => $arrNews,
-            'paginator' => $paginator
+            'paginator' => $paginator,
+            'category' => $category
         ];
 
-
-        $this->load->view('tin-tuc-tai-chinh', $arrData);
+        return $arrData;
     }
 
     public function chiTietTinTucTaiChinh(){
+        $slug = str_replace('.html', '', $this->uri->segment(3));
 
-        $id = (int) $this->uri->segment(2);
-
-        if(!$id){
-            redirect(base_url('tin-tuc-tai-chinh'));
+        if(empty($slug)){
+            redirect(base_url());
         }
 
         $newsModel = $this->load->model('news_model');
 
         $arrConditions = [
             'deleted' => 0,
-            'id' => $id
+            'status' => 1,
+            'slug' => $slug
         ];
 
         $news = $newsModel->getDetail($arrConditions);
 
         if(empty($news)){
-            redirect(base_url('tin-tuc-tai-chinh'));
+            redirect(base_url());
         }
 
-        $arrData = [
-            'news' => $news
+        $arrSlug = [
+            $this->uri->segment(1),
+            $this->uri->segment(2)
         ];
 
-        $this->load->view('chi-tiet-tin-tuc-tai-chinh', $arrData);
+        //get tree menu
+        $categoryModel = $this->load->model('category_model');
+
+        $arrConditions = [
+            'deleted' => 0,
+            'status' => 1,
+            'inSlug' => $arrSlug
+        ];
+
+        $arrTreeMenu = $categoryModel->getList($arrConditions, 'ASC');
+
+        //bai viet lien quan ben trai
+        $arrConditions = [
+            'status' => 1,
+            'deleted' => 0,
+            'notId' => $news['id']
+        ];
+
+        $arrNewsLeft = $newsModel->getPaginator($arrConditions, 1, 3);
+
+        //bai viet lien quan phia duoi
+        $arrConditions = [
+            'status' => 1,
+            'deleted' => 0,
+            'notId' => $news['id'],
+            'categoryId' => $news['category_id']
+        ];
+
+        $arrNewsBottom = $newsModel->getPaginator($arrConditions, 1, 4);
+
+        $arrData = [
+            'news' => $news,
+            'arrTreeMenu' => $arrTreeMenu,
+            'arrNewsLeft' => $arrNewsLeft,
+            'arrNewsBottom' => $arrNewsBottom
+        ];
+
+        $this->load->view('news/chi-tiet-tin-tuc-tai-chinh', $arrData);
     }
 
     public function loanStepOne() {

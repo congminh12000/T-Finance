@@ -24,6 +24,7 @@
                             <thead class="text-primary">
                             <th>Tiêu đề</th>
                             <th>Tác giả</th>
+                            <th>Danh mục</th>
                             <th>Ngày tạo</th>
                             <th>Ảnh đại diện</th>
                             <th>Trạng thái</th>
@@ -38,6 +39,7 @@
                                 <tr>
                                     <td><?php echo $new->title;?></td>
                                     <td><?php echo $new->author;?></td>
+                                    <td><?php echo $arrCategory[$new->category_id]['name'];?></td>
                                     <td><?php echo $new->created_at;?></td>
                                     <td>
                                         <?php if($new->avatar): ?>

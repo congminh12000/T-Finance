@@ -52,13 +52,13 @@ $action = $this->uri->segment(2);
 
                     <div class="col-md-12">
                         <div class="form-group label-floating">
-                            <label class="control-label">Hiện bài viết</label>
+                            <label class="control-label">Hiện danh mục</label>
                             <input type="radio" name="status" class="form-control" value="1" <?php echo isset($category) ? ( $category['status'] == 1 ? 'checked' : '' ) : set_radio('status', '1', true ); ?> />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group label-floating">
-                            <label class="control-label">Ẩn bài viết</label>
+                            <label class="control-label">Ẩn danh mục</label>
                             <input type="radio" name="status" class="form-control" value="0" <?php echo isset($category) ? ( $category['status'] == 0 ? 'checked' : '' ) : set_radio('status', '0'); ?>>
                         </div>
                     </div>
@@ -81,6 +81,14 @@ $action = $this->uri->segment(2);
                         <div class="form-group label-floating">
                             <label class="control-label">Meta description</label>
                             <input type="text" name="metaDescription" class="form-control" value="<?php echo set_value('metaDescription', $category['meta_description']); ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                    <div class="form-group label-floating">
+                            <label class="control-label">Icon</label>
+                            <input type="text" name="icon" class="form-control" value="<?php echo set_value('icon', $category['icon']); ?>">
+                            <small style="color: red">( Icon dựa theo http://fontawesome.io/icons/ )</small>
                         </div>
                     </div>
                 </div>
