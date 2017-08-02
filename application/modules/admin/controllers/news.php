@@ -25,7 +25,7 @@ class News extends MX_Controller {
         $limit = 10;
         $page = $this->uri->segment(2);
         $total = $newsModel->getTotal($arrConditions);
-        $paginator = getPaginator($total, $limit, base_url('news'));
+        $paginator = getPaginator($total, $limit, base_url('news'), 2);
         $arrNews = $newsModel->getPaginator($arrConditions, $page, $limit);
 
         //get category
