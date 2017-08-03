@@ -51,6 +51,10 @@
           <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 box_newsdetail text-justify">
             	<h2><?php echo $news['title']; ?></h2>
                 <p>Viết bởi <b><?php echo $news['author']; ?></b> vào <?php echo $news['created_at']; ?></p>
+
+                <!-- button social -->
+                <div class="fb-share-button" data-href="<?php echo base_url(uri_string()); ?>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+
                 <p><?php echo $news['description']; ?></p>
                 <img src="<?php echo base_url('static/admin/img/news/' . $news['avatar']); ?>" alt="(Tiêu đề bài viết)" class="img-responsive"><br><br>
                 <?php echo $news['content']; ?>
@@ -75,6 +79,15 @@
         </div> <!--End row-->
     </div> <!--End container-->
 </div> <!--End news-->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1779082595682193";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <?php $this->load->view("partial/footer"); ?>
 

@@ -1,22 +1,55 @@
 <?php
 $baseUrl = $this->config->base_url();
 $route = $this->uri->segment(1);
-$id = $this->uri->segment(2);
+$segment2 = $this->uri->segment(2);
+$segment3 = $this->uri->segment(3);
+$numSegment = (int) count($this->uri->segment_array());
 
 $this->load->helper('meta');
-$metaTitle = 'Dịch vụ tư vấn tài chính trực tuyến';
+$metaTitle = 'T-Finance - Dịch vụ tư vấn tài chính trực tuyến';
 $metaKeyWord = 'dich vu tu van tai chinh, quang nam, da nang, quảng nam, đà nẵng, dịch vụ tư vấn, tài chính';
-$metaDescription =  'Dịch vụ tư vấn tài chính trực tuyến';
+$metaDescription =  'T-Finance - Dịch vụ tư vấn tài chính trực tuyến';
 
 //get mete SEO
-switch($route){
-    case 'chi-tiet-tin-tuc-tai-chinh':
+if($route == 'tin-tuc-tai-chinh'){
 
-        $arrMeta = getMetaHelper($id);
-        $arrMeta['metaTitle'] ? $metaTitle = $arrMeta['metaTitle'] : '';
-        $arrMeta['metaKeyword'] ? $metaKeyWord = $arrMeta['metaKeyword'] : '';
-        $arrMeta['metaDescription'] ? $metaDescription = $arrMeta['metaDescription'] : '';
-        break;
+    switch($numSegment){
+        case 1:
+
+            $arrMeta = getMetaHelper($route, 'category_model');
+
+            break;
+        case 2:
+
+            if(is_numeric($segment2)){//    page
+                $arrMeta = getMetaHelper($route, 'category_model');
+
+            } else {    //slug
+                $arrMeta = getMetaHelper($segment2, 'category_model');
+
+            }
+
+            break;
+        case 3:
+
+            if(is_numeric($segment3)){//    page
+                $arrMeta = getMetaHelper($segment2, 'category_model');
+
+            } else {    //slug
+                $segment3 = str_replace('.html', '', $segment3);
+                $arrMeta = getMetaHelper($segment3, 'news_model');
+
+            }
+
+            break;
+        default:
+            redirect(base_url());
+            break;
+    }
+
+    $arrMeta['metaTitle'] ? $metaTitle = $arrMeta['metaTitle'] : '';
+    $arrMeta['metaKeyword'] ? $metaKeyWord = $arrMeta['metaKeyword'] : '';
+    $arrMeta['metaDescription'] ? $metaDescription = $arrMeta['metaDescription'] : '';
 }
 
 ?>
@@ -25,9 +58,9 @@ switch($route){
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>T-Finance - <?php echo $metaTitle; ?></title>
-        <meta name="title" content="T-Finance - <?php echo $metaTitle; ?>">
-        <meta name="description" content="T-Finance - <?php echo $metaDescription; ?>">
+        <title><?php echo $metaTitle; ?></title>
+        <meta name="title" content="<?php echo $metaTitle; ?>">
+        <meta name="description" content="<?php echo $metaDescription; ?>">
         <meta name="keywords" content="<?php echo $metaKeyWord; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 

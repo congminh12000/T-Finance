@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-    function getMetaHelper($id, $nameModel){
+    function getMetaHelper($slug, $nameModel){
 
-        $id = (int) $id;
+        $slug = trim($slug);
 
-        if($id <= 0 || empty($nameModel)){
+        if(empty($slug) || empty($nameModel)){
             return [];
         }
 
@@ -16,7 +16,7 @@
         $arrConditions = [
             'deleted' => 0,
             'status' => 1,
-            'id' => $id
+            'slug' => $slug
         ];
 
        $meta = $model->getDetail($arrConditions);
