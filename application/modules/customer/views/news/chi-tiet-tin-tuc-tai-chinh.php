@@ -54,6 +54,7 @@
 
                 <!-- button social -->
                 <div class="fb-share-button" data-href="<?php echo base_url(uri_string()); ?>" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
+                <div class="g-plus" data-action="share" data-height="24" data-href="<?php echo base_url(uri_string()); ?>"></div>
 
                 <p><?php echo $news['description']; ?></p>
                 <img src="<?php echo base_url('static/admin/img/news/' . $news['avatar']); ?>" alt="(Tiêu đề bài viết)" class="img-responsive"><br><br>
@@ -80,14 +81,22 @@
     </div> <!--End container-->
 </div> <!--End news-->
 
+<!-- script FB -->
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10&appId=1779082595682193";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- script Google -->
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer>
+  {lang: 'vi'}
+</script>
 
 <?php $this->load->view("partial/footer"); ?>
 
