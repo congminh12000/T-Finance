@@ -50,7 +50,7 @@ $urlUri = base_url();
        	  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center box_news">
           <h2 class="title-news">
                 <a href="<?php echo $urlDetail; ?>" target="_self">
-                    <?php echo strlen($new->title) > 120 ? substr($new->title, 0, 120) . '...' : $new->title; ?>
+                    <?php echo strlen($new->title) > 160 ? substr($new->title, 0, 160) . '...' : $new->title; ?>
                 </a>
             </h2>
           <p>Viết bởi <b><?php echo $new->author; ?></b> vào <?php echo $new->created_at; ?></p>
@@ -58,7 +58,7 @@ $urlUri = base_url();
                     <img src="<?php echo  base_url('static/admin/img/news/' . $new->avatar); ?>" alt="(Tiêu đề bài viết)" class="img-responsive" width="600" height="400">
                 </a>
                 <div class="short-description">
-                    <?php echo strlen($new->description) > 260 ? substr($new->description, 0, 260) . '...' : $new->description; ?>
+                    <?php echo strlen($new->description) > 450 ? substr($new->description, 0, 450) . '...' : $new->description; ?>
                 </div>
                 <h5><a href="<?php echo $urlDetail; ?>" target="_self">Xem thêm <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></h5>
                 </div> <!--End col-->
